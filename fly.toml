@@ -1,0 +1,24 @@
+# Fly.io: `fly launch --no-deploy` (keep this file), `fly volumes create arena_data --size 1`, `fly deploy`
+app = "creature-auto-arena"
+primary_region = "iad"
+
+[build]
+
+[env]
+  PORT = "3000"
+  DATA_DIR = "/data"
+
+[mounts]
+  source = "arena_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "off"
+  min_machines_running = 1
+
+[[http_service.checks]]
+  path = "/health"
+  interval = "30s"
+  timeout = "5s"
