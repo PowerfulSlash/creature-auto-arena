@@ -13,7 +13,7 @@ db.open(DATA_DIR);
 
 /* ------------------------------------------------------------------ static + REST */
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.ico': 'image/x-icon' };
-const STATIC = { '/': 'public/index.html', '/offline': 'public/offline.html', '/shared/game.js': 'shared/game.js' };
+const STATIC = { '/': 'public/index.html', '/offline': 'public/offline.html', '/wiki': 'public/wiki.html', '/shared/game.js': 'shared/game.js' };
 const hits = new Map();
 function limited(ip, max = 12, windowMs = 60000) {
   const now = Date.now(); const h = hits.get(ip);
@@ -42,6 +42,11 @@ const server = http.createServer((req, res) => {
       if (r.error) return json(res, 400, { error: r.error });
       json(res, 200, { token: r.token, name: r.user.name });
     });
+  }
+  if (req.method === 'GET' && url === '/api/assets') {
+    const list = d => { try { return fs.readdirSync(path.join(ROOT, 'public', 'assets', d)).filter(f => f.endsWith('.png')).map(f => f.slice(0, -4)); } catch { return []; } };
+    res.setHeader('Cache-Control', 'no-cache');
+    return json(res, 200, { portraits: list('portraits'), items: list('items') });
   }
   if (req.method === 'GET' && url === '/api/leaderboard') return json(res, 200, db.leaderboard(50));
   if (url === '/favicon.ico') { res.writeHead(204); return res.end(); }

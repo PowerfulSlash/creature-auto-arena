@@ -1,0 +1,653 @@
+diff --git a/Creature-Auto-Arena-Wiki.md b/Creature-Auto-Arena-Wiki.md
+new file mode 100644
+index 0000000..ddaf1c2
+--- /dev/null
++++ b/Creature-Auto-Arena-Wiki.md
+@@ -0,0 +1,334 @@
++# Creature Auto Arena - Wiki
++
++_Generated from the game's data. 92 units, 19 synergies, 18 items._
++
++## Contents
++1. [Rules](#rules)
++2. [Shop odds & levels](#shop-odds--levels)
++3. [Synergies](#synergies)
++4. [Abilities](#abilities)
++5. [Items](#items)
++6. [Units](#units)
++
++## Rules
++- **Board & bench.** Your level equals the number of units you may field (Level 2 = 2 units … Level 9 = 9). The bench holds 8 units. You can only place units on the bottom 3 rows of the board.
++- **Merging.** Three copies of the same unit at the same star level merge into one unit of the next star (max 3 stars). Items on the merged copies are kept (up to 3 per unit; extras return to your item stash). 2-star units have 2x HP and 1.8x attack; 3-star units have 4x HP and 3.2x attack.
++- **Buying & selling.** Rerolling the shop costs 1 gold. Buying XP costs 4 gold for 4 XP. Selling gives back the cost for a 1-star unit, (cost x 3 - 1) for a 2-star and (cost x 9 - 1) for a 3-star, and returns equipped items.
++- **Income each round.** Base 4 gold (stages 1-3) or 5 gold (stage 4+), +1 for winning, +1 interest per 10 gold you hold (max +5), and a streak bonus for consecutive wins or losses: 2-3 streak +1, 4-5 streak +2, 6+ streak +3. You also gain 2 XP every round.
++- **Rounds.** Stages 1, 2 and 3 are wild encounters (very weak). Stage 9, 14, 19, 24, 28, 32, 36 and 40 are boss fights. Every other stage is player-vs-player (or vs a bot team). Winning a wild round drops items (1 item, 2 on boss stages).
++- **Taking damage.** Losing a PvP round costs you 2 + floor(stage x 0.6) + the number of surviving enemy units, in HP. Losing a wild round costs 1 + floor(stage / 2) + surviving enemies. You start with 100 HP; at 0 you are eliminated.
++- **Combat basics.** Units move toward the nearest enemy and attack automatically. Base attack speed is 0.8 attacks per second. Each attack gives +10 mana (plus any bonuses) and being hit gives +4 mana; when mana is full the unit casts its ability instead of attacking. Melee units have 90 mana, ranged units 70. Damage = attack x 30 / (30 + target defense). Everyone has a 5% base crit chance (crits deal 1.5x damage). A fight lasts at most 45 seconds; if both sides survive, the side with more total remaining HP wins.
++- **Synergies.** Count the number of DIFFERENT species you have on the board that share a type (two copies of the same unit count once). Reaching a threshold activates that tier of the bonus for every unit of that type on your team. Units have two types, so they count towards two synergies.
++- **Ranked (online).** Standard Elo, K=32, starting at 1000. Only ranked games with 2+ human players change ratings; each human is scored against every other human by finishing order. Quitting counts as an elimination.
++
++## Shop odds & levels
++Chance for each shop slot to be a unit of that cost, by your level. XP needed to reach the next level in the last column.
++
++| Level | 1-cost | 2-cost | 3-cost | 4-cost | 5-cost | XP to next level |
++|---|---|---|---|---|---|---|
++| 1 | 100% | - | - | - | - | 2 |
++| 2 | 100% | - | - | - | - | 6 |
++| 3 | 70% | 30% | - | - | - | 10 |
++| 4 | 50% | 40% | 10% | - | - | 22 |
++| 5 | 36% | 42% | 20% | 2% | - | 34 |
++| 6 | 25% | 40% | 30% | 5% | - | 52 |
++| 7 | 15% | 35% | 35% | 15% | - | 72 |
++| 8 | 11% | 27% | 35% | 22% | 5% | 72 |
++| 9 | 5% | 20% | 35% | 30% | 10% | max |
++
++## Synergies
++_Thresholds count different species of that type on your board. Values in each effect line are listed in threshold order._
++
++| Synergy | Thresholds | Effect (per threshold) | Units |
++|---|---|---|---|
++| **Normal** | 2 / 4 / 6 / 8 | Max HP +10/20/35/60% | 14 |
++| **Sound** | 2 / 4 / 6 | +3/6/10 mana per attack | 9 |
++| **Flying** | 2 / 4 / 6 / 8 | Attack speed +20/35/55/80% | 13 |
++| **Fighting** | 2 / 4 / 6 / 8 | Attack +20/40/70/110% | 8 |
++| **Poison** | 2 / 4 / 6 | Hits poison 1/2/3% max HP per sec | 7 |
++| **Field** | 2 / 4 / 6 | Max HP +15/35/60% | 8 |
++| **Wild** | 2 / 4 / 6 | Crit +15/30/50%, Atk +10/20/30% | 11 |
++| **Fire** | 2 / 4 / 6 / 8 | Hits deal bonus 20/40/70/110% Atk | 10 |
++| **Water** | 2 / 4 / 6 / 8 | Start with +20/35/50/70 mana | 9 |
++| **Grass** | 2 / 4 / 6 | Regen 1/2/3.5% HP per sec | 7 |
++| **Electric** | 2 / 4 / 6 | Hits chain to 1/2/3 more enemies | 8 |
++| **Psychic** | 2 / 4 / 6 | Ability power +25/50/90% | 14 |
++| **Dark** | 2 / 4 / 6 | Crit +10%, crit damage +40/80/140% | 11 |
++| **Steel** | 2 / 4 / 6 | Defense +5/10/18 | 10 |
++| **Ice** | 2 / 4 / 6 | Hits slow targets 40%, Def +2/4/8 | 8 |
++| **Ghost** | 2 / 4 / 6 | Dodge 10/20/35% of attacks | 7 |
++| **Bug** | 2 / 4 / 6 | Attack +10/20/30%, speed +10/20/35% | 11 |
++| **Rock** | 2 / 4 / 6 | Reflect 10/20/35% melee dmg, Def +2/4/6 | 9 |
++| **Ground** | 2 / 4 / 6 | Defense +3/6/10, HP +10/20/35% | 10 |
++
++### Synergy details
++
++#### Normal
++- **Thresholds:** 2 / 4 / 6 / 8 different Normal units
++- **Effect:** Max HP +10/20/35/60%
++- **Ability style of Normal-primary units:** Power Shot
++- **Units (14):** Beetlet (1), Cubby (1), Dreamling (1), Embrit (1), Fluffin (1), Frostkit (1), Pebblit (1), Pupling (1), Scrapper (1), Sprigle (1), Tinkit (1), Gloomcat (2), Ironpup (2), Mystifox (4)
++
++#### Sound
++- **Thresholds:** 2 / 4 / 6 different Sound units
++- **Effect:** +3/6/10 mana per attack
++- **Ability style of Sound-primary units:** Rally
++- **Units (9):** Chirpy (1), Fluffin (1), Hummer (2), Mindling (2), Warblow (2), Echobat (3), Harmonix (4), Tsunamar (4), Wailspore (4)
++
++#### Flying
++- **Thresholds:** 2 / 4 / 6 / 8 different Flying units
++- **Effect:** Attack speed +20/35/55/80%
++- **Ability style of Flying-primary units:** Power Shot
++- **Units (13):** Burrowl (1), Chirpy (1), Mothlet (1), Mothwing (2), Tidefin (2), Warblow (2), Sagewing (3), Stormraptor (3), Tempestcrow (3), Frostwyrm (4), Terradrake (4), Emberphoenix (5), Skybreaker (5)
++
++#### Fighting
++- **Thresholds:** 2 / 4 / 6 / 8 different Fighting units
++- **Effect:** Attack +20/40/70/110%
++- **Ability style of Fighting-primary units:** Shockwave
++- **Units (8):** Scrapper (1), Boulderoo (2), Cragmite (2), Blazehorn (3), Brawlbear (3), Cryobear (3), Hornetking (3), Titanfist (4)
++
++#### Poison
++- **Thresholds:** 2 / 4 / 6 different Poison units
++- **Effect:** Hits poison 1/2/3% max HP per sec
++- **Ability style of Poison-primary units:** Drain
++- **Units (7):** Mothlet (1), Toxipod (2), Webspin (2), Stingtail (3), Venomaw (3), Wailspore (4), Noxqueen (5)
++
++#### Field
++- **Thresholds:** 2 / 4 / 6 different Field units
++- **Effect:** Max HP +15/35/60%
++- **Ability style of Field-primary units:** Mend
++- **Units (8):** Dewpup (1), Pupling (1), Leafawn (2), Snowhare (2), Voltmouse (2), Gaiaphant (3), Meadowdeer (3), Thunderstag (4)
++
++#### Wild
++- **Thresholds:** 2 / 4 / 6 different Wild units
++- **Effect:** Crit +15/30/50%, Atk +10/20/30%
++- **Ability style of Wild-primary units:** Power Shot
++- **Units (11):** Cubby (1), Shadelet (1), Zaplet (1), Cindrake (2), Tuskboar (2), Boulderhorn (3), Brawlbear (3), Thornlion (3), Nightstalker (4), Phantomare (4), Voltwolf (4)
++
++#### Fire
++- **Thresholds:** 2 / 4 / 6 / 8 different Fire units
++- **Effect:** Hits deal bonus 20/40/70/110% Atk
++- **Ability style of Fire-primary units:** Shockwave
++- **Units (10):** Embrit (1), Cindrake (2), Pyrofly (2), Blazehorn (3), Lanternwisp (3), Moltenback (3), Steelhound (3), Magmawyrm (4), Emberphoenix (5), Solarion (5)
++
++#### Water
++- **Thresholds:** 2 / 4 / 6 / 8 different Water units
++- **Effect:** Start with +20/35/50/70 mana
++- **Ability style of Water-primary units:** Mend
++- **Units (9):** Dewpup (1), Shellkin (1), Coralisk (2), Glimmerfin (2), Tidefin (2), Aquadon (3), Glaciarch (4), Tsunamar (4), Abyssal (5)
++
++#### Grass
++- **Thresholds:** 2 / 4 / 6 different Grass units
++- **Effect:** Regen 1/2/3.5% HP per sec
++- **Ability style of Grass-primary units:** Drain
++- **Units (7):** Sprigle (1), Ghoulet (2), Leafawn (2), Toxipod (2), Meadowdeer (3), Thornlion (3), Floraqueen (4)
++
++#### Electric
++- **Thresholds:** 2 / 4 / 6 different Electric units
++- **Effect:** Hits chain to 1/2/3 more enemies
++- **Ability style of Electric-primary units:** Paralyze
++- **Units (8):** Sparkbug (1), Zaplet (1), Bolthide (2), Voltmouse (2), Stormraptor (3), Thunderstag (4), Voltwolf (4), Skybreaker (5)
++
++#### Psychic
++- **Thresholds:** 2 / 4 / 6 different Psychic units
++- **Effect:** Ability power +25/50/90%
++- **Ability style of Psychic-primary units:** Paralyze
++- **Units (14):** Dreamling (1), Hexcub (2), Mindling (2), Aquadon (3), Sagewing (3), Spectrix (3), Floraqueen (4), Harmonix (4), Mystifox (4), Hivemind (5), Monolith (5), Noxqueen (5), Permafrost (5), Solarion (5)
++
++#### Dark
++- **Thresholds:** 2 / 4 / 6 different Dark units
++- **Effect:** Crit +10%, crit damage +40/80/140%
++- **Ability style of Dark-primary units:** Drain
++- **Units (11):** Shadelet (1), Wispet (1), Gloomcat (2), Hexcub (2), Echobat (3), Tempestcrow (3), Venomaw (3), Nightstalker (4), Obsidian (4), Abyssal (5), Eclipsar (5)
++
++#### Steel
++- **Thresholds:** 2 / 4 / 6 different Steel units
++- **Effect:** Defense +5/10/18
++- **Ability style of Steel-primary units:** Shockwave
++- **Units (10):** Tinkit (1), Bolthide (2), Ironpup (2), Quakeback (3), Steelhound (3), Cragtitan (4), Scarabeast (4), Titanfist (4), Colossus (5), Wraithlord (5)
++
++#### Ice
++- **Thresholds:** 2 / 4 / 6 different Ice units
++- **Effect:** Hits slow targets 40%, Def +2/4/8
++- **Ability style of Ice-primary units:** Paralyze
++- **Units (8):** Frostkit (1), Glimmerfin (2), Snowhare (2), Cryobear (3), Glacipede (3), Frostwyrm (4), Glaciarch (4), Permafrost (5)
++
++#### Ghost
++- **Thresholds:** 2 / 4 / 6 different Ghost units
++- **Effect:** Dodge 10/20/35% of attacks
++- **Ability style of Ghost-primary units:** Drain
++- **Units (7):** Wispet (1), Ghoulet (2), Lanternwisp (3), Spectrix (3), Phantomare (4), Eclipsar (5), Wraithlord (5)
++
++#### Bug
++- **Thresholds:** 2 / 4 / 6 different Bug units
++- **Effect:** Attack +10/20/30%, speed +10/20/35%
++- **Ability style of Bug-primary units:** Power Shot
++- **Units (11):** Beetlet (1), Sparkbug (1), Hummer (2), Mothwing (2), Pyrofly (2), Webspin (2), Glacipede (3), Hornetking (3), Stingtail (3), Scarabeast (4), Hivemind (5)
++
++#### Rock
++- **Thresholds:** 2 / 4 / 6 different Rock units
++- **Effect:** Reflect 10/20/35% melee dmg, Def +2/4/6
++- **Ability style of Rock-primary units:** Shockwave
++- **Units (9):** Gritlet (1), Shellkin (1), Coralisk (2), Cragmite (2), Boulderhorn (3), Moltenback (3), Cragtitan (4), Obsidian (4), Monolith (5)
++
++#### Ground
++- **Thresholds:** 2 / 4 / 6 different Ground units
++- **Effect:** Defense +3/6/10, HP +10/20/35%
++- **Ability style of Ground-primary units:** Shockwave
++- **Units (10):** Burrowl (1), Gritlet (1), Pebblit (1), Boulderoo (2), Tuskboar (2), Gaiaphant (3), Quakeback (3), Magmawyrm (4), Terradrake (4), Colossus (5)
++
++## Abilities
++Every unit's ability is set by its **first** type.
++
++| Ability | Effect | Used by first type |
++|---|---|---|
++| **Power Shot** | Deals 3x Atk to its target. Scales with ability power. | Normal, Flying, Wild, Bug |
++| **Shockwave** | Deals 2x Atk to all adjacent enemies. Scales with ability power. | Fighting, Fire, Steel, Rock, Ground |
++| **Mend** | Heals the weakest ally. Scales with ability power. | Field, Water |
++| **Rally** | Allies within 2 tiles gain +20% Atk. Scales with ability power. | Sound |
++| **Paralyze** | Stuns the target for 1.5s and deals 1.5x Atk. Scales with ability power. | Electric, Psychic, Ice |
++| **Drain** | Deals 2.2x Atk and heals half of it. Scales with ability power. | Poison, Grass, Dark, Ghost |
++
++## Items
++Each unit can hold up to 3 items. Items drop from wild rounds and bosses; drag them onto a unit during the prep phase.
++
++| Item | Effect |
++|---|---|
++| **Power Band** | +8 Attack |
++| **Iron Plate** | +8 Defense |
++| **Swift Charm** | +25% attack speed |
++| **Mana Orb** | +30 starting mana |
++| **Hearty Berry** | +90 max HP |
++| **Sharp Lens** | +25% crit chance |
++| **Regrowth Leaf** | Regen 1.5% HP per sec |
++| **Mind Wand** | +40% ability power |
++| **Speed Scarf** | +35% move speed |
++| **Aegis Charm** | Starts with a shield (30% max HP) |
++| **Vampire Fang** | Heal 25% of attack damage |
++| **Blast Core** | Attacks splash adjacent foes for 50% |
++| **Venom Vial** | Attacks poison for 2% HP/s |
++| **Frost Gem** | Attacks slow the target 40% |
++| **Rage Totem** | +30% Attack |
++| **King's Crown** | +12% to all stats |
++| **Thorn Mail** | Reflect 20% of melee damage taken |
++| **Time Gear** | +8 mana per attack |
++
++## Units
++Base stats are for 1-star. 2-star = 2x HP, 1.8x attack. 3-star = 4x HP, 3.2x attack. Range 1 = melee. "Mana" is the amount needed to cast.
++
++### 1-cost (Common)
++
++| Unit | Types | HP | Attack | Defense | Range | Mana | Ability |
++|---|---|---|---|---|---|---|---|
++| **Beetlet** | Bug / Normal | 75 | 7 | 5 | 1 | 90 | Power Shot |
++| **Burrowl** | Ground / Flying | 75 | 7 | 5 | 1 | 90 | Shockwave |
++| **Chirpy** | Flying / Sound | 75 | 7 | 5 | 1 | 90 | Power Shot |
++| **Cubby** | Wild / Normal | 75 | 7 | 5 | 1 | 90 | Power Shot |
++| **Dewpup** | Water / Field | 75 | 7 | 5 | 1 | 90 | Mend |
++| **Dreamling** | Psychic / Normal | 51 | 8 | 3 | 3 | 70 | Paralyze |
++| **Embrit** | Fire / Normal | 75 | 7 | 5 | 1 | 90 | Shockwave |
++| **Fluffin** | Normal / Sound | 75 | 7 | 5 | 1 | 90 | Power Shot |
++| **Frostkit** | Ice / Normal | 75 | 7 | 5 | 1 | 90 | Paralyze |
++| **Gritlet** | Rock / Ground | 75 | 7 | 5 | 1 | 90 | Shockwave |
++| **Mothlet** | Poison / Flying | 51 | 8 | 3 | 3 | 70 | Drain |
++| **Pebblit** | Ground / Normal | 75 | 7 | 5 | 1 | 90 | Shockwave |
++| **Pupling** | Normal / Field | 75 | 7 | 5 | 1 | 90 | Power Shot |
++| **Scrapper** | Fighting / Normal | 75 | 7 | 5 | 1 | 90 | Shockwave |
++| **Shadelet** | Dark / Wild | 75 | 7 | 5 | 1 | 90 | Drain |
++| **Shellkin** | Water / Rock | 75 | 7 | 5 | 1 | 90 | Mend |
++| **Sparkbug** | Bug / Electric | 75 | 7 | 5 | 1 | 90 | Power Shot |
++| **Sprigle** | Grass / Normal | 51 | 8 | 3 | 3 | 70 | Drain |
++| **Tinkit** | Steel / Normal | 75 | 7 | 5 | 1 | 90 | Shockwave |
++| **Wispet** | Ghost / Dark | 75 | 7 | 5 | 1 | 90 | Drain |
++| **Zaplet** | Electric / Wild | 51 | 8 | 3 | 3 | 70 | Paralyze |
++
++### 2-cost (Uncommon)
++
++| Unit | Types | HP | Attack | Defense | Range | Mana | Ability |
++|---|---|---|---|---|---|---|---|
++| **Bolthide** | Steel / Electric | 113 | 10 | 7 | 1 | 90 | Shockwave |
++| **Boulderoo** | Ground / Fighting | 113 | 10 | 7 | 1 | 90 | Shockwave |
++| **Cindrake** | Fire / Wild | 113 | 10 | 7 | 1 | 90 | Shockwave |
++| **Coralisk** | Water / Rock | 113 | 10 | 7 | 1 | 90 | Mend |
++| **Cragmite** | Rock / Fighting | 113 | 10 | 7 | 1 | 90 | Shockwave |
++| **Ghoulet** | Ghost / Grass | 113 | 10 | 7 | 1 | 90 | Drain |
++| **Glimmerfin** | Water / Ice | 113 | 10 | 7 | 1 | 90 | Mend |
++| **Gloomcat** | Dark / Normal | 113 | 10 | 7 | 1 | 90 | Drain |
++| **Hexcub** | Psychic / Dark | 77 | 12 | 5 | 3 | 70 | Paralyze |
++| **Hummer** | Sound / Bug | 77 | 12 | 5 | 3 | 70 | Rally |
++| **Ironpup** | Steel / Normal | 113 | 10 | 7 | 1 | 90 | Shockwave |
++| **Leafawn** | Grass / Field | 77 | 12 | 5 | 3 | 70 | Drain |
++| **Mindling** | Psychic / Sound | 77 | 12 | 5 | 3 | 70 | Paralyze |
++| **Mothwing** | Bug / Flying | 113 | 10 | 7 | 1 | 90 | Power Shot |
++| **Pyrofly** | Fire / Bug | 113 | 10 | 7 | 1 | 90 | Shockwave |
++| **Snowhare** | Ice / Field | 113 | 10 | 7 | 1 | 90 | Paralyze |
++| **Tidefin** | Water / Flying | 113 | 10 | 7 | 1 | 90 | Mend |
++| **Toxipod** | Poison / Grass | 77 | 12 | 5 | 3 | 70 | Drain |
++| **Tuskboar** | Wild / Ground | 113 | 10 | 7 | 1 | 90 | Power Shot |
++| **Voltmouse** | Electric / Field | 77 | 12 | 5 | 3 | 70 | Paralyze |
++| **Warblow** | Sound / Flying | 77 | 12 | 5 | 3 | 70 | Rally |
++| **Webspin** | Bug / Poison | 113 | 10 | 7 | 1 | 90 | Power Shot |
++
++### 3-cost (Rare)
++
++| Unit | Types | HP | Attack | Defense | Range | Mana | Ability |
++|---|---|---|---|---|---|---|---|
++| **Aquadon** | Water / Psychic | 163 | 14 | 10 | 1 | 90 | Mend |
++| **Blazehorn** | Fire / Fighting | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Boulderhorn** | Rock / Wild | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Brawlbear** | Fighting / Wild | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Cryobear** | Ice / Fighting | 163 | 14 | 10 | 1 | 90 | Paralyze |
++| **Echobat** | Sound / Dark | 111 | 16 | 8 | 3 | 70 | Rally |
++| **Gaiaphant** | Ground / Field | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Glacipede** | Ice / Bug | 163 | 14 | 10 | 1 | 90 | Paralyze |
++| **Hornetking** | Bug / Fighting | 163 | 14 | 10 | 1 | 90 | Power Shot |
++| **Lanternwisp** | Ghost / Fire | 163 | 14 | 10 | 1 | 90 | Drain |
++| **Meadowdeer** | Field / Grass | 163 | 14 | 10 | 1 | 90 | Mend |
++| **Moltenback** | Rock / Fire | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Quakeback** | Ground / Steel | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Sagewing** | Psychic / Flying | 111 | 16 | 8 | 3 | 70 | Paralyze |
++| **Spectrix** | Ghost / Psychic | 163 | 14 | 10 | 1 | 90 | Drain |
++| **Steelhound** | Steel / Fire | 163 | 14 | 10 | 1 | 90 | Shockwave |
++| **Stingtail** | Poison / Bug | 111 | 16 | 8 | 3 | 70 | Drain |
++| **Stormraptor** | Electric / Flying | 111 | 16 | 8 | 3 | 70 | Paralyze |
++| **Tempestcrow** | Flying / Dark | 163 | 14 | 10 | 1 | 90 | Power Shot |
++| **Thornlion** | Grass / Wild | 111 | 16 | 8 | 3 | 70 | Drain |
++| **Venomaw** | Poison / Dark | 111 | 16 | 8 | 3 | 70 | Drain |
++
++### 4-cost (Epic)
++
++| Unit | Types | HP | Attack | Defense | Range | Mana | Ability |
++|---|---|---|---|---|---|---|---|
++| **Cragtitan** | Rock / Steel | 225 | 19 | 13 | 1 | 90 | Shockwave |
++| **Floraqueen** | Grass / Psychic | 153 | 22 | 11 | 3 | 70 | Drain |
++| **Frostwyrm** | Ice / Flying | 225 | 19 | 13 | 1 | 90 | Paralyze |
++| **Glaciarch** | Ice / Water | 225 | 19 | 13 | 1 | 90 | Paralyze |
++| **Harmonix** | Sound / Psychic | 153 | 22 | 11 | 3 | 70 | Rally |
++| **Magmawyrm** | Fire / Ground | 225 | 19 | 13 | 1 | 90 | Shockwave |
++| **Mystifox** | Psychic / Normal | 153 | 22 | 11 | 3 | 70 | Paralyze |
++| **Nightstalker** | Dark / Wild | 225 | 19 | 13 | 1 | 90 | Drain |
++| **Obsidian** | Rock / Dark | 225 | 19 | 13 | 1 | 90 | Shockwave |
++| **Phantomare** | Ghost / Wild | 225 | 19 | 13 | 1 | 90 | Drain |
++| **Scarabeast** | Bug / Steel | 225 | 19 | 13 | 1 | 90 | Power Shot |
++| **Terradrake** | Ground / Flying | 225 | 19 | 13 | 1 | 90 | Shockwave |
++| **Thunderstag** | Electric / Field | 153 | 22 | 11 | 3 | 70 | Paralyze |
++| **Titanfist** | Fighting / Steel | 225 | 19 | 13 | 1 | 90 | Shockwave |
++| **Tsunamar** | Water / Sound | 225 | 19 | 13 | 1 | 90 | Mend |
++| **Voltwolf** | Electric / Wild | 153 | 22 | 11 | 3 | 70 | Paralyze |
++| **Wailspore** | Sound / Poison | 153 | 22 | 11 | 3 | 70 | Rally |
++
++### 5-cost (Ultra)
++
++| Unit | Types | HP | Attack | Defense | Range | Mana | Ability |
++|---|---|---|---|---|---|---|---|
++| **Abyssal** | Water / Dark | 313 | 26 | 17 | 1 | 90 | Mend |
++| **Colossus** | Steel / Ground | 313 | 26 | 17 | 1 | 90 | Shockwave |
++| **Eclipsar** | Ghost / Dark | 313 | 26 | 17 | 1 | 90 | Drain |
++| **Emberphoenix** | Fire / Flying | 313 | 26 | 17 | 1 | 90 | Shockwave |
++| **Hivemind** | Bug / Psychic | 313 | 26 | 17 | 1 | 90 | Power Shot |
++| **Monolith** | Rock / Psychic | 313 | 26 | 17 | 1 | 90 | Shockwave |
++| **Noxqueen** | Poison / Psychic | 213 | 30 | 15 | 3 | 70 | Drain |
++| **Permafrost** | Ice / Psychic | 313 | 26 | 17 | 1 | 90 | Paralyze |
++| **Skybreaker** | Flying / Electric | 313 | 26 | 17 | 1 | 90 | Power Shot |
++| **Solarion** | Fire / Psychic | 313 | 26 | 17 | 1 | 90 | Shockwave |
++| **Wraithlord** | Ghost / Steel | 313 | 26 | 17 | 1 | 90 | Drain |
+diff --git a/package.json b/package.json
+index b29f31b..46451f5 100644
+--- a/package.json
++++ b/package.json
+@@ -3,8 +3,15 @@
+   "version": "1.0.0",
+   "description": "Online auto-battler with lobbies and an Elo ladder",
+   "main": "server/index.js",
+-  "scripts": { "start": "node server/index.js" },
+-  "engines": { "node": ">=22.13" },
+-  "dependencies": { "ws": "^8.18.0" },
++  "scripts": {
++    "start": "node server/index.js",
++    "wiki": "node tools/build-wiki.js"
++  },
++  "engines": {
++    "node": ">=22.13"
++  },
++  "dependencies": {
++    "ws": "^8.18.0"
++  },
+   "license": "GPL-3.0"
+-}
++}
+\ No newline at end of file
+diff --git a/public/assets/items/.gitkeep b/public/assets/items/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/assets/portraits/.gitkeep b/public/assets/portraits/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/index.html b/public/index.html
+index 0980fbb..0bb67f3 100644
+--- a/public/index.html
++++ b/public/index.html
+@@ -76,9 +76,26 @@ canvas#cv{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelate
+ #xpbar{position:relative;height:20px;background:#171b30;border:2px solid #000;border-radius:7px;overflow:hidden}
+ #xpbar div{height:100%;background:#3b7bd6;width:0}
+ #xpbar span{position:absolute;inset:0;text-align:center;font-size:12px;line-height:16px}
+-#tip{position:fixed;display:none;min-width:180px;max-width:240px;padding:8px 10px;font-size:12px;z-index:10;pointer-events:none;line-height:1.35}
+-#tip h4{margin:0 0 3px;font-size:15px}
+-#tip .m{color:var(--mut)}
++#tip{position:fixed;display:none;width:330px;padding:10px;font-size:13px;z-index:30;pointer-events:none;line-height:1.3;background:#1b2038f4;border:3px solid #000;border-radius:12px;box-shadow:0 6px 0 #0007,inset 0 2px 0 rgba(255,255,255,.12)}
++#tip .top{display:flex;gap:10px;align-items:center}
++#tip .pt{width:76px;height:76px;flex:none;border:3px solid #000;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
++#tip .pt img,#tip .pt canvas{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
++#tip .nm{flex:1;min-width:0}#tip h4{margin:0;font-size:21px;-webkit-text-stroke:.5px #000;paint-order:stroke fill}
++#tip .rar{color:#8f98b8;font-size:13px;letter-spacing:.5px}#tip .stars{color:#ffd84a;font-size:17px;letter-spacing:1px;text-shadow:0 1px 0 #000}
++#tip .tps{display:flex;gap:6px}#tip .tps .ico{width:38px;height:38px;font-size:12px;border-width:3px}
++#tip .bar{position:relative;height:19px;border:2px solid #000;border-radius:3px;margin-top:6px;overflow:hidden;background:#12162a;text-align:center;font-size:13px;line-height:15px;text-shadow:0 1px 1px #000,0 0 3px #000}
++#tip .bar i{position:absolute;left:0;top:0;bottom:0}#tip .bar b{position:relative}
++#tip .hpb i{background:linear-gradient(#9de050,#5fa82a)}#tip .ppb i{background:linear-gradient(#6fb4ff,#3d7fd8)}
++#tip .stats{display:grid;grid-template-columns:repeat(2,1fr) 54px;grid-auto-flow:column;grid-template-rows:repeat(3,auto);gap:5px;margin-top:8px}
++#tip .st{background:#2d3556;border:2px solid #000;border-radius:7px;padding:3px 7px;display:flex;align-items:center;gap:6px;font-size:14px}
++#tip .st em{font-style:normal;color:#8f98b8;font-size:11px;width:30px}
++#tip .rng{grid-column:3;grid-row:1/4;background:#2d3556;border:2px solid #000;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:24px}
++#tip .rng small{font-size:10px;color:#8f98b8}
++#tip .ab{margin-top:9px;border-top:2px solid #000;padding-top:7px}
++#tip .ab h5{margin:0 0 3px;font-size:17px;-webkit-text-stroke:.4px #000;paint-order:stroke fill}
++#tip .ab p{margin:0;color:#dfe5f8}#tip .ab .cur{color:#ffd84a}#tip .ab b{color:#c9b3ff}
++#tip .its{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}#tip .its span{background:#2d3556;border:2px solid #000;border-radius:99px;padding:1px 8px;font-size:12px}
++#tip.item .pt{border-radius:50%}#tip .glyph{font-size:34px;color:#222}
+ #msg{position:fixed;left:50%;top:90px;transform:translateX(-50%);padding:6px 14px;background:#000a;border-radius:8px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none}
+ #banner{position:fixed;left:0;right:0;top:34%;text-align:center;font-size:64px;color:#fff;text-shadow:0 4px 0 #000,0 0 20px #000;pointer-events:none;opacity:0;transition:opacity .3s;letter-spacing:2px}
+ #over,#help{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:20}
+@@ -130,6 +147,7 @@ body:not(.ingame) .g,body:not(.ingame) #tip,body:not(.ingame) #banner{display:no
+   <div id="side" class="g">
+     <button id="bHelp" title="Help">?</button>
+     <button id="bFs" title="Fullscreen">[]</button>
++    <button id="bWiki" title="Open the wiki">W</button>
+     <button id="bSpeed" title="Battle speed">1x</button>
+     <button id="bNew" title="Leave match">X</button>
+   </div>
+@@ -169,7 +187,7 @@ body:not(.ingame) .g,body:not(.ingame) #tip,body:not(.ingame) #banner{display:no
+ <div class="sect">Join with code</div><div class="row2"><input id="jcode" placeholder="CODE" maxlength="5" style="text-transform:uppercase"><button class="btn blue" id="mjoin">Join</button></div>
+ <div class="sect">Open lobbies</div><div id="lobbylist"></div>
+ </div><div><div class="sect">Leaderboard</div><table id="boardt"><thead><tr><th>#</th><th>Player</th><th>Rating</th><th>Games</th><th>Wins</th></tr></thead><tbody id="board"></tbody></table>
+-<div class="dim" style="margin-top:10px"><a href="/offline">Practice offline</a> · <a href="#" id="mlogout">Log out</a></div></div></div></div></div>
++<div class="dim" style="margin-top:10px"><a href="/wiki" target="_blank">Wiki</a> · <a href="/offline">Practice offline</a> · <a href="#" id="mlogout">Log out</a></div></div></div></div></div>
+ <div id="lobbyv" class="screen"><div class="box panel"><h1>Lobby <span id="lcode" class="code"></span></h1><div class="dim" id="lmode"></div>
+ <div id="lplayers"></div><div id="lcount" class="count"></div>
+ <label id="lranked"><input type="checkbox" id="lrankedcb"> Ranked</label>
+@@ -570,18 +588,61 @@ addEventListener('keydown',e=>{
+ function toggleLock(){if(canAct())net({t:'lock'})}
+ 
+ /* tooltip */
++const RN=['','COMMON','UNCOMMON','RARE','EPIC','ULTRA'];
++let HAVE={portraits:new Set(),items:new Set()};
++try{fetch('/api/assets').then(r=>r.json()).then(a=>{HAVE.portraits=new Set(a.portraits);HAVE.items=new Set(a.items)}).catch(()=>{})}catch(e){}
++function portraitHTML(name,d){
++  const bg=RBG[d.cost].replace(/linear-gradient\(([^,]+),([^)]+)\)/,'linear-gradient($1,$2)');
++  return HAVE.portraits.has(name)?`<div class="pt" style="background:${bg}"><img src="/assets/portraits/${encodeURIComponent(name)}.png" alt=""></div>`
++    :`<div class="pt" style="background:${bg}"><canvas width="14" height="14" data-s="${name}"></canvas></div>`;
++}
++function abilityLine(d,star,ap){
++  const L=m=>[1,2,3].map(s=>`<b${s===star?' class="cur"':''}>${Math.round(d.atk*ATM[s]*m)}</b>`).join('/');
++  const apT=ap?` <span style="color:#9fe3ff">(+${Math.round(ap*100)}% ability power)</span>`:'';
++  switch(d.ab){
++    case 'bolt':return `Deal ${L(3)} damage to its target.${apT}`;
++    case 'nova':return `Deal ${L(2)} damage to all adjacent enemies${d.range>1?' around its target':''}.${apT}`;
++    case 'heal':return `Heal the weakest ally for ${[1,2,3].map(s=>`<b${s===star?' class="cur"':''}>${Math.round(d.hp*HPM[s]*.25+d.atk*ATM[s])}</b>`).join('/')} HP.${apT}`;
++    case 'buff':return `Allies within 2 tiles gain +20% attack.${apT}`;
++    case 'stun':return `Stun the target for 1.5s and deal ${L(1.5)} damage.${apT}`;
++    case 'drain':return `Deal ${L(2.2)} damage and heal for half of it.${apT}`;
++  }
++  return '';
++}
+ function showTip(p){
+   const t=$('#tip');if(!p){hideTip();return}
+-  const isUnit=!!p.def;const d=isUnit?p.def:BYNAME[p.name];const star=p.star;
+-  let hp=d.hp*HPM[star],atk=d.atk*ATM[star];
+-  if(isUnit){hp=p.maxhp;atk=p.atk}
+-  const ab=ABIL[d.ab];
+-  t.innerHTML=`<h4>${d.name} ${'★'.repeat(star)}</h4><div class="m">${d.types.map(x=>TYPES[x].n).join(' / ')} · cost ${d.cost}</div>
+-  HP ${Math.round(isUnit?p.hp:hp)}/${Math.round(hp)} · Atk ${Math.round(atk)} · Def ${Math.round(isUnit?p.df:d.def)}<br>Range ${d.range} · Mana ${d.maxMana}<br><b>${ab[0]}</b>: ${ab[1]}
+-  ${!isUnit&&p.items&&p.items.length?'<br>'+p.items.map(i=>ITEMS.find(q=>q.id===i).n).join(', '):''}`;
++  const isUnit=!!p.def;const d=isUnit?p.def:BYNAME[p.name];const star=p.star||1;
++  const maxhp=isUnit?Math.round(p.maxhp):Math.round(d.hp*HPM[star]),hp=isUnit?Math.max(0,Math.round(p.hp)):maxhp;
++  const atk=Math.round(isUnit?p.atk:d.atk*ATM[star]),df=Math.round(isUnit?p.df:d.def);
++  const aspd=(isUnit?p.aspd:.8).toFixed(2),crit=Math.round((isUnit?p.crit:.05)*100),ap=Math.round((isUnit?p.ap:0)*100);
++  const mana=isUnit?Math.round(p.mana):0;
++  const its=!isUnit&&p.items&&p.items.length?`<div class="its">${p.items.map(i=>`<span title="${ITEMS.find(q=>q.id===i).d}">${ITEMS.find(q=>q.id===i).n}</span>`).join('')}</div>`:'';
++  t.className='panel';
++  t.innerHTML=`<div class="top">${portraitHTML(d.name,d)}<div class="nm"><h4>${d.name}</h4><div class="rar">${RN[d.cost]}</div><div class="stars">${'★'.repeat(star)}</div></div><div class="tps">${d.types.map(x=>tIcon(x)).join('')}</div></div>
++  <div class="bar hpb"><i style="width:${hp/maxhp*100}%"></i><b>HP: ${hp===maxhp?maxhp:hp+'/'+maxhp}</b></div>
++  <div class="bar ppb"><i style="width:${mana/d.maxMana*100}%"></i><b>PP: ${isUnit?mana+'/':''}${d.maxMana}</b></div>
++  <div class="stats"><div class="st"><em>ATK</em>${atk}</div><div class="st"><em>DEF</em>${df}</div><div class="st"><em>SPD</em>${aspd}</div>
++  <div class="st"><em>CRIT</em>${crit}%</div><div class="st"><em>AP</em>${ap}%</div><div class="st"><em>COST</em>${d.cost}</div>
++  <div class="rng">${d.range}<small>RANGE</small></div></div>
++  <div class="ab"><h5>${ABIL[d.ab][0]}</h5><p>${abilityLine(d,star,isUnit?p.ap:0)}</p></div>${its}`;
++  t.querySelectorAll('canvas[data-s]').forEach(c=>c.getContext('2d').drawImage(sprite(c.dataset.s),0,0));
+   t.style.display='block';moveTip();
+ }
+-function moveTip(){const t=$('#tip');t.style.left=Math.min(W-260,mouse.x+16)+'px';t.style.top=Math.max(50,mouse.y-110)+'px'}
++function showItemTip(id){
++  const it=ITEMS.find(q=>q.id===id);if(!it)return;const t=$('#tip');
++  const art=HAVE.items.has(id)?`<img src="/assets/items/${id}.png" alt="">`:`<span class="glyph">${it.g}</span>`;
++  t.className='panel item';
++  t.innerHTML=`<div class="top"><div class="pt" style="background:${it.c}">${art}</div><div class="nm"><h4>${it.n}</h4><div class="rar">ITEM</div></div></div>
++  <div class="ab"><p>${it.d}.</p><p style="margin-top:5px;color:#8f98b8">Drag it onto a unit during prep (max 3 per unit).</p></div>`;
++  t.style.display='block';moveTip();
++}
++function moveTip(){
++  const t=$('#tip');const w=t.offsetWidth||330,h=t.offsetHeight||200;
++  let x=mouse.x+18,y=mouse.y-h-14;
++  if(x+w>innerWidth-8)x=mouse.x-w-18;
++  if(y<48)y=Math.min(innerHeight-h-8,mouse.y+20);
++  t.style.left=Math.max(8,x)+'px';t.style.top=Math.max(48,y)+'px';
++}
+ function hideTip(){$('#tip').style.display='none';hover=null}
+ 
+ /* ------------------------------------------------------------------ rendering: DOM */
+@@ -627,8 +688,9 @@ function renderAll(){
+     const th=TYPES[t].th;
+     return`<div class="sy ${s.tier?'':'off'}" title="${TYPES[t].desc}">${tIcon(t)}<div class="n">${s.count}</div><div class="th">${th.map((v,i)=>i+1===s.tier?`<b>${v}</b>`:v).join(' ')}<i>${TYPES[t].n}</i></div></div>`}).join(''):'<div style="color:var(--mut);font-size:12px;text-align:center">Place units on the board</div>';
+   // items
+-  $('#items').innerHTML=G.items.map((id,i)=>{const it=ITEMS.find(q=>q.id===id);return`<div class="it" data-i="${i}" style="background:${it.c}" title="${it.n}: ${it.d}">${it.g}</div>`}).join('');
++  $('#items').innerHTML=G.items.map((id,i)=>{const it=ITEMS.find(q=>q.id===id);return`<div class="it" data-i="${i}" style="background:${it.c}">${HAVE.items.has(it.id)?`<img src="/assets/items/${it.id}.png" alt="">`:it.g}</div>`}).join('');
+   document.querySelectorAll('.it').forEach(el=>{
++    el.onmouseenter=ev=>{mouse.x=ev.clientX;mouse.y=ev.clientY;if(!drag)showItemTip(G.items[+el.dataset.i])};el.onmousemove=ev=>{mouse.x=ev.clientX;mouse.y=ev.clientY;moveTip()};el.onmouseleave=hideTip;
+     el.onpointerdown=e=>{if(!canAct()){msg('Items can only be equipped during prep');return}mouse.x=e.clientX;mouse.y=e.clientY;drag={item:G.items[+el.dataset.i]};e.preventDefault()};
+   });
+   // players
+@@ -660,7 +722,7 @@ function frame(now){
+ 
+ /* buttons */
+ $('#reroll').onclick=reroll;$('#buyxp').onclick=buyXp;$('#lock').onclick=toggleLock;$('#ready').onclick=toggleReady;
+-$('#bHelp').onclick=()=>$('#help').style.display='flex';$('#helpOk').onclick=()=>$('#help').style.display='none';
++$('#bWiki').onclick=()=>window.open('/wiki','_blank');$('#bHelp').onclick=()=>$('#help').style.display='flex';$('#helpOk').onclick=()=>$('#help').style.display='none';
+ $('#bFs').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
+ $('#bSpeed').onclick=()=>{speed=speed===1?2:speed===2?4:1;$('#bSpeed').textContent=speed+'x'};
+ $('#bNew').onclick=()=>{if(confirm('Leave the match? You will be eliminated.')){net({t:'leave'});G=null;B=null;$('#over').style.display='none'}};
+diff --git a/public/wiki.html b/public/wiki.html
+new file mode 100644
+index 0000000..5c87920
+--- /dev/null
++++ b/public/wiki.html
+@@ -0,0 +1,15 @@
++<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Creature Auto Arena Wiki</title><style>
++:root{--bg:#141a2e;--p:#222a48;--p2:#2c3558;--tx:#eef1fb;--mu:#9aa5c9;--hi:#ffd84a;--ln:#0b0f1e}
++*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 "Trebuchet MS",Verdana,sans-serif}
++header{position:sticky;top:0;z-index:5;background:#0f1424ee;backdrop-filter:blur(6px);border-bottom:3px solid var(--ln);padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
++header h1{margin:0;font-size:20px}nav{display:flex;gap:10px;flex-wrap:wrap}nav a{color:#8ec5ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
++#q{margin-left:auto;padding:7px 10px;border-radius:8px;border:2px solid var(--ln);background:var(--p);color:var(--tx);min-width:200px;font:inherit}
++main{max-width:1100px;margin:0 auto;padding:16px}section{margin:0 0 34px}h2{border-bottom:3px solid var(--ln);padding-bottom:4px;color:var(--hi)}
++.card{background:var(--p);border:3px solid var(--ln);border-radius:12px;padding:12px 14px;margin:10px 0}
++table{width:100%;border-collapse:collapse;background:var(--p);border:3px solid var(--ln);border-radius:10px;overflow:hidden}
++th,td{padding:6px 9px;text-align:left;border-bottom:1px solid var(--ln);vertical-align:top}th{background:var(--p2);font-size:13px;color:var(--mu)}
++.b{display:inline-block;padding:1px 8px;border-radius:99px;color:#111;font-size:12px;border:2px solid #000;margin:1px 2px 1px 0}
++.mu{color:var(--mu)}.hide{display:none!important}ul{margin:6px 0;padding-left:20px}.gold{color:var(--hi)}
++.syn h3{margin:0 0 4px}.units a{color:#cfe3ff;text-decoration:none}.units span{display:inline-block;margin:2px 8px 2px 0}
++.tbl{overflow-x:auto}
++</style></head><body><header><h1>Creature Auto Arena Wiki</h1><nav><a href="/">← Back to game</a><a href="#rules">Rules</a><a href="#odds">Shop odds</a><a href="#synergies">Synergies</a><a href="#abilities">Abilities</a><a href="#items">Items</a><a href="#units">Units</a></nav><input id="q" placeholder="Search units, synergies, items…"></header><main><section id="rules"><h2>Rules</h2><div class="card"><ul><li><b>Board &amp; bench.</b> Your level equals the number of units you may field (Level 2 = 2 units … Level 9 = 9). The bench holds 8 units. You can only place units on the bottom 3 rows of the board.</li><li><b>Merging.</b> Three copies of the same unit at the same star level merge into one unit of the next star (max 3 stars). Items on the merged copies are kept (up to 3 per unit; extras return to your item stash). 2-star units have 2x HP and 1.8x attack; 3-star units have 4x HP and 3.2x attack.</li><li><b>Buying &amp; selling.</b> Rerolling the shop costs 1 gold. Buying XP costs 4 gold for 4 XP. Selling gives back the cost for a 1-star unit, (cost x 3 - 1) for a 2-star and (cost x 9 - 1) for a 3-star, and returns equipped items.</li><li><b>Income each round.</b> Base 4 gold (stages 1-3) or 5 gold (stage 4+), +1 for winning, +1 interest per 10 gold you hold (max +5), and a streak bonus for consecutive wins or losses: 2-3 streak +1, 4-5 streak +2, 6+ streak +3. You also gain 2 XP every round.</li><li><b>Rounds.</b> Stages 1, 2 and 3 are wild encounters (very weak). Stage 9, 14, 19, 24, 28, 32, 36 and 40 are boss fights. Every other stage is player-vs-player (or vs a bot team). Winning a wild round drops items (1 item, 2 on boss stages).</li><li><b>Taking damage.</b> Losing a PvP round costs you 2 + floor(stage x 0.6) + the number of surviving enemy units, in HP. Losing a wild round costs 1 + floor(stage / 2) + surviving enemies. You start with 100 HP; at 0 you are eliminated.</li><li><b>Combat basics.</b> Units move toward the nearest enemy and attack automatically. Base attack speed is 0.8 attacks per second. Each attack gives +10 mana (plus any bonuses) and being hit gives +4 mana; when mana is full the unit casts its ability instead of attacking. Melee units have 90 mana, ranged units 70. Damage = attack x 30 / (30 + target defense). Everyone has a 5% base crit chance (crits deal 1.5x damage). A fight lasts at most 45 seconds; if both sides survive, the side with more total remaining HP wins.</li><li><b>Synergies.</b> Count the number of DIFFERENT species you have on the board that share a type (two copies of the same unit count once). Reaching a threshold activates that tier of the bonus for every unit of that type on your team. Units have two types, so they count towards two synergies.</li><li><b>Ranked (online).</b> Standard Elo, K=32, starting at 1000. Only ranked games with 2+ human players change ratings; each human is scored against every other human by finishing order. Quitting counts as an elimination.</li></ul></div></section><section id="odds"><h2>Shop odds &amp; levels</h2><div class="tbl"><table><tr><th>Level</th><th>1-cost</th><th>2-cost</th><th>3-cost</th><th>4-cost</th><th>5-cost</th><th>XP to next</th></tr><tr><td>1</td><td>100%</td><td>–</td><td>–</td><td>–</td><td>–</td><td>2</td></tr><tr><td>2</td><td>100%</td><td>–</td><td>–</td><td>–</td><td>–</td><td>6</td></tr><tr><td>3</td><td>70%</td><td>30%</td><td>–</td><td>–</td><td>–</td><td>10</td></tr><tr><td>4</td><td>50%</td><td>40%</td><td>10%</td><td>–</td><td>–</td><td>22</td></tr><tr><td>5</td><td>36%</td><td>42%</td><td>20%</td><td>2%</td><td>–</td><td>34</td></tr><tr><td>6</td><td>25%</td><td>40%</td><td>30%</td><td>5%</td><td>–</td><td>52</td></tr><tr><td>7</td><td>15%</td><td>35%</td><td>35%</td><td>15%</td><td>–</td><td>72</td></tr><tr><td>8</td><td>11%</td><td>27%</td><td>35%</td><td>22%</td><td>5%</td><td>72</td></tr><tr><td>9</td><td>5%</td><td>20%</td><td>35%</td><td>30%</td><td>10%</td><td>max</td></tr></table></div></section><section id="synergies"><h2>Synergies</h2><p class="mu">Thresholds count <b>different species</b> of that type on your board. Effect values are listed in threshold order.</p><div class="card syn s" data-k="normal max hp +10/20/35/60% beetlet cubby dreamling embrit fluffin frostkit pebblit pupling scrapper sprigle tinkit gloomcat ironpup mystifox"><h3><span class="b" style="background:#c8c8c8">Normal</span> <span class="gold">2 / 4 / 6 / 8</span></h3><div>Max HP +10/20/35/60%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Beetlet">Beetlet</a> <small>(1)</small></span><span><a href="#u-Cubby">Cubby</a> <small>(1)</small></span><span><a href="#u-Dreamling">Dreamling</a> <small>(1)</small></span><span><a href="#u-Embrit">Embrit</a> <small>(1)</small></span><span><a href="#u-Fluffin">Fluffin</a> <small>(1)</small></span><span><a href="#u-Frostkit">Frostkit</a> <small>(1)</small></span><span><a href="#u-Pebblit">Pebblit</a> <small>(1)</small></span><span><a href="#u-Pupling">Pupling</a> <small>(1)</small></span><span><a href="#u-Scrapper">Scrapper</a> <small>(1)</small></span><span><a href="#u-Sprigle">Sprigle</a> <small>(1)</small></span><span><a href="#u-Tinkit">Tinkit</a> <small>(1)</small></span><span><a href="#u-Gloomcat">Gloomcat</a> <small>(2)</small></span><span><a href="#u-Ironpup">Ironpup</a> <small>(2)</small></span><span><a href="#u-Mystifox">Mystifox</a> <small>(4)</small></span></div></div><div class="card syn s" data-k="sound +3/6/10 mana per attack chirpy fluffin hummer mindling warblow echobat harmonix tsunamar wailspore"><h3><span class="b" style="background:#ec6fa8">Sound</span> <span class="gold">2 / 4 / 6</span></h3><div>+3/6/10 mana per attack</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Chirpy">Chirpy</a> <small>(1)</small></span><span><a href="#u-Fluffin">Fluffin</a> <small>(1)</small></span><span><a href="#u-Hummer">Hummer</a> <small>(2)</small></span><span><a href="#u-Mindling">Mindling</a> <small>(2)</small></span><span><a href="#u-Warblow">Warblow</a> <small>(2)</small></span><span><a href="#u-Echobat">Echobat</a> <small>(3)</small></span><span><a href="#u-Harmonix">Harmonix</a> <small>(4)</small></span><span><a href="#u-Tsunamar">Tsunamar</a> <small>(4)</small></span><span><a href="#u-Wailspore">Wailspore</a> <small>(4)</small></span></div></div><div class="card syn s" data-k="flying attack speed +20/35/55/80% burrowl chirpy mothlet mothwing tidefin warblow sagewing stormraptor tempestcrow frostwyrm terradrake emberphoenix skybreaker"><h3><span class="b" style="background:#c9a6e8">Flying</span> <span class="gold">2 / 4 / 6 / 8</span></h3><div>Attack speed +20/35/55/80%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Burrowl">Burrowl</a> <small>(1)</small></span><span><a href="#u-Chirpy">Chirpy</a> <small>(1)</small></span><span><a href="#u-Mothlet">Mothlet</a> <small>(1)</small></span><span><a href="#u-Mothwing">Mothwing</a> <small>(2)</small></span><span><a href="#u-Tidefin">Tidefin</a> <small>(2)</small></span><span><a href="#u-Warblow">Warblow</a> <small>(2)</small></span><span><a href="#u-Sagewing">Sagewing</a> <small>(3)</small></span><span><a href="#u-Stormraptor">Stormraptor</a> <small>(3)</small></span><span><a href="#u-Tempestcrow">Tempestcrow</a> <small>(3)</small></span><span><a href="#u-Frostwyrm">Frostwyrm</a> <small>(4)</small></span><span><a href="#u-Terradrake">Terradrake</a> <small>(4)</small></span><span><a href="#u-Emberphoenix">Emberphoenix</a> <small>(5)</small></span><span><a href="#u-Skybreaker">Skybreaker</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="fighting attack +20/40/70/110% scrapper boulderoo cragmite blazehorn brawlbear cryobear hornetking titanfist"><h3><span class="b" style="background:#d4483f">Fighting</span> <span class="gold">2 / 4 / 6 / 8</span></h3><div>Attack +20/40/70/110%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Scrapper">Scrapper</a> <small>(1)</small></span><span><a href="#u-Boulderoo">Boulderoo</a> <small>(2)</small></span><span><a href="#u-Cragmite">Cragmite</a> <small>(2)</small></span><span><a href="#u-Blazehorn">Blazehorn</a> <small>(3)</small></span><span><a href="#u-Brawlbear">Brawlbear</a> <small>(3)</small></span><span><a href="#u-Cryobear">Cryobear</a> <small>(3)</small></span><span><a href="#u-Hornetking">Hornetking</a> <small>(3)</small></span><span><a href="#u-Titanfist">Titanfist</a> <small>(4)</small></span></div></div><div class="card syn s" data-k="poison hits poison 1/2/3% max hp per sec mothlet toxipod webspin stingtail venomaw wailspore noxqueen"><h3><span class="b" style="background:#6dcb78">Poison</span> <span class="gold">2 / 4 / 6</span></h3><div>Hits poison 1/2/3% max HP per sec</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Mothlet">Mothlet</a> <small>(1)</small></span><span><a href="#u-Toxipod">Toxipod</a> <small>(2)</small></span><span><a href="#u-Webspin">Webspin</a> <small>(2)</small></span><span><a href="#u-Stingtail">Stingtail</a> <small>(3)</small></span><span><a href="#u-Venomaw">Venomaw</a> <small>(3)</small></span><span><a href="#u-Wailspore">Wailspore</a> <small>(4)</small></span><span><a href="#u-Noxqueen">Noxqueen</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="field max hp +15/35/60% dewpup pupling leafawn snowhare voltmouse gaiaphant meadowdeer thunderstag"><h3><span class="b" style="background:#e0963c">Field</span> <span class="gold">2 / 4 / 6</span></h3><div>Max HP +15/35/60%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Dewpup">Dewpup</a> <small>(1)</small></span><span><a href="#u-Pupling">Pupling</a> <small>(1)</small></span><span><a href="#u-Leafawn">Leafawn</a> <small>(2)</small></span><span><a href="#u-Snowhare">Snowhare</a> <small>(2)</small></span><span><a href="#u-Voltmouse">Voltmouse</a> <small>(2)</small></span><span><a href="#u-Gaiaphant">Gaiaphant</a> <small>(3)</small></span><span><a href="#u-Meadowdeer">Meadowdeer</a> <small>(3)</small></span><span><a href="#u-Thunderstag">Thunderstag</a> <small>(4)</small></span></div></div><div class="card syn s" data-k="wild crit +15/30/50%, atk +10/20/30% cubby shadelet zaplet cindrake tuskboar boulderhorn brawlbear thornlion nightstalker phantomare voltwolf"><h3><span class="b" style="background:#b83a3a">Wild</span> <span class="gold">2 / 4 / 6</span></h3><div>Crit +15/30/50%, Atk +10/20/30%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Cubby">Cubby</a> <small>(1)</small></span><span><a href="#u-Shadelet">Shadelet</a> <small>(1)</small></span><span><a href="#u-Zaplet">Zaplet</a> <small>(1)</small></span><span><a href="#u-Cindrake">Cindrake</a> <small>(2)</small></span><span><a href="#u-Tuskboar">Tuskboar</a> <small>(2)</small></span><span><a href="#u-Boulderhorn">Boulderhorn</a> <small>(3)</small></span><span><a href="#u-Brawlbear">Brawlbear</a> <small>(3)</small></span><span><a href="#u-Thornlion">Thornlion</a> <small>(3)</small></span><span><a href="#u-Nightstalker">Nightstalker</a> <small>(4)</small></span><span><a href="#u-Phantomare">Phantomare</a> <small>(4)</small></span><span><a href="#u-Voltwolf">Voltwolf</a> <small>(4)</small></span></div></div><div class="card syn s" data-k="fire hits deal bonus 20/40/70/110% atk embrit cindrake pyrofly blazehorn lanternwisp moltenback steelhound magmawyrm emberphoenix solarion"><h3><span class="b" style="background:#f0702f">Fire</span> <span class="gold">2 / 4 / 6 / 8</span></h3><div>Hits deal bonus 20/40/70/110% Atk</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Embrit">Embrit</a> <small>(1)</small></span><span><a href="#u-Cindrake">Cindrake</a> <small>(2)</small></span><span><a href="#u-Pyrofly">Pyrofly</a> <small>(2)</small></span><span><a href="#u-Blazehorn">Blazehorn</a> <small>(3)</small></span><span><a href="#u-Lanternwisp">Lanternwisp</a> <small>(3)</small></span><span><a href="#u-Moltenback">Moltenback</a> <small>(3)</small></span><span><a href="#u-Steelhound">Steelhound</a> <small>(3)</small></span><span><a href="#u-Magmawyrm">Magmawyrm</a> <small>(4)</small></span><span><a href="#u-Emberphoenix">Emberphoenix</a> <small>(5)</small></span><span><a href="#u-Solarion">Solarion</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="water start with +20/35/50/70 mana dewpup shellkin coralisk glimmerfin tidefin aquadon glaciarch tsunamar abyssal"><h3><span class="b" style="background:#4f9bec">Water</span> <span class="gold">2 / 4 / 6 / 8</span></h3><div>Start with +20/35/50/70 mana</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Dewpup">Dewpup</a> <small>(1)</small></span><span><a href="#u-Shellkin">Shellkin</a> <small>(1)</small></span><span><a href="#u-Coralisk">Coralisk</a> <small>(2)</small></span><span><a href="#u-Glimmerfin">Glimmerfin</a> <small>(2)</small></span><span><a href="#u-Tidefin">Tidefin</a> <small>(2)</small></span><span><a href="#u-Aquadon">Aquadon</a> <small>(3)</small></span><span><a href="#u-Glaciarch">Glaciarch</a> <small>(4)</small></span><span><a href="#u-Tsunamar">Tsunamar</a> <small>(4)</small></span><span><a href="#u-Abyssal">Abyssal</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="grass regen 1/2/3.5% hp per sec sprigle ghoulet leafawn toxipod meadowdeer thornlion floraqueen"><h3><span class="b" style="background:#5fbf4f">Grass</span> <span class="gold">2 / 4 / 6</span></h3><div>Regen 1/2/3.5% HP per sec</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Sprigle">Sprigle</a> <small>(1)</small></span><span><a href="#u-Ghoulet">Ghoulet</a> <small>(2)</small></span><span><a href="#u-Leafawn">Leafawn</a> <small>(2)</small></span><span><a href="#u-Toxipod">Toxipod</a> <small>(2)</small></span><span><a href="#u-Meadowdeer">Meadowdeer</a> <small>(3)</small></span><span><a href="#u-Thornlion">Thornlion</a> <small>(3)</small></span><span><a href="#u-Floraqueen">Floraqueen</a> <small>(4)</small></span></div></div><div class="card syn s" data-k="electric hits chain to 1/2/3 more enemies sparkbug zaplet bolthide voltmouse stormraptor thunderstag voltwolf skybreaker"><h3><span class="b" style="background:#f2d83a">Electric</span> <span class="gold">2 / 4 / 6</span></h3><div>Hits chain to 1/2/3 more enemies</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Sparkbug">Sparkbug</a> <small>(1)</small></span><span><a href="#u-Zaplet">Zaplet</a> <small>(1)</small></span><span><a href="#u-Bolthide">Bolthide</a> <small>(2)</small></span><span><a href="#u-Voltmouse">Voltmouse</a> <small>(2)</small></span><span><a href="#u-Stormraptor">Stormraptor</a> <small>(3)</small></span><span><a href="#u-Thunderstag">Thunderstag</a> <small>(4)</small></span><span><a href="#u-Voltwolf">Voltwolf</a> <small>(4)</small></span><span><a href="#u-Skybreaker">Skybreaker</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="psychic ability power +25/50/90% dreamling hexcub mindling aquadon sagewing spectrix floraqueen harmonix mystifox hivemind monolith noxqueen permafrost solarion"><h3><span class="b" style="background:#e8609a">Psychic</span> <span class="gold">2 / 4 / 6</span></h3><div>Ability power +25/50/90%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Dreamling">Dreamling</a> <small>(1)</small></span><span><a href="#u-Hexcub">Hexcub</a> <small>(2)</small></span><span><a href="#u-Mindling">Mindling</a> <small>(2)</small></span><span><a href="#u-Aquadon">Aquadon</a> <small>(3)</small></span><span><a href="#u-Sagewing">Sagewing</a> <small>(3)</small></span><span><a href="#u-Spectrix">Spectrix</a> <small>(3)</small></span><span><a href="#u-Floraqueen">Floraqueen</a> <small>(4)</small></span><span><a href="#u-Harmonix">Harmonix</a> <small>(4)</small></span><span><a href="#u-Mystifox">Mystifox</a> <small>(4)</small></span><span><a href="#u-Hivemind">Hivemind</a> <small>(5)</small></span><span><a href="#u-Monolith">Monolith</a> <small>(5)</small></span><span><a href="#u-Noxqueen">Noxqueen</a> <small>(5)</small></span><span><a href="#u-Permafrost">Permafrost</a> <small>(5)</small></span><span><a href="#u-Solarion">Solarion</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="dark crit +10%, crit damage +40/80/140% shadelet wispet gloomcat hexcub echobat tempestcrow venomaw nightstalker obsidian abyssal eclipsar"><h3><span class="b" style="background:#6b5a7e">Dark</span> <span class="gold">2 / 4 / 6</span></h3><div>Crit +10%, crit damage +40/80/140%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Shadelet">Shadelet</a> <small>(1)</small></span><span><a href="#u-Wispet">Wispet</a> <small>(1)</small></span><span><a href="#u-Gloomcat">Gloomcat</a> <small>(2)</small></span><span><a href="#u-Hexcub">Hexcub</a> <small>(2)</small></span><span><a href="#u-Echobat">Echobat</a> <small>(3)</small></span><span><a href="#u-Tempestcrow">Tempestcrow</a> <small>(3)</small></span><span><a href="#u-Venomaw">Venomaw</a> <small>(3)</small></span><span><a href="#u-Nightstalker">Nightstalker</a> <small>(4)</small></span><span><a href="#u-Obsidian">Obsidian</a> <small>(4)</small></span><span><a href="#u-Abyssal">Abyssal</a> <small>(5)</small></span><span><a href="#u-Eclipsar">Eclipsar</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="steel defense +5/10/18 tinkit bolthide ironpup quakeback steelhound cragtitan scarabeast titanfist colossus wraithlord"><h3><span class="b" style="background:#9db4c4">Steel</span> <span class="gold">2 / 4 / 6</span></h3><div>Defense +5/10/18</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Tinkit">Tinkit</a> <small>(1)</small></span><span><a href="#u-Bolthide">Bolthide</a> <small>(2)</small></span><span><a href="#u-Ironpup">Ironpup</a> <small>(2)</small></span><span><a href="#u-Quakeback">Quakeback</a> <small>(3)</small></span><span><a href="#u-Steelhound">Steelhound</a> <small>(3)</small></span><span><a href="#u-Cragtitan">Cragtitan</a> <small>(4)</small></span><span><a href="#u-Scarabeast">Scarabeast</a> <small>(4)</small></span><span><a href="#u-Titanfist">Titanfist</a> <small>(4)</small></span><span><a href="#u-Colossus">Colossus</a> <small>(5)</small></span><span><a href="#u-Wraithlord">Wraithlord</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="ice hits slow targets 40%, def +2/4/8 frostkit glimmerfin snowhare cryobear glacipede frostwyrm glaciarch permafrost"><h3><span class="b" style="background:#8fe3f2">Ice</span> <span class="gold">2 / 4 / 6</span></h3><div>Hits slow targets 40%, Def +2/4/8</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Frostkit">Frostkit</a> <small>(1)</small></span><span><a href="#u-Glimmerfin">Glimmerfin</a> <small>(2)</small></span><span><a href="#u-Snowhare">Snowhare</a> <small>(2)</small></span><span><a href="#u-Cryobear">Cryobear</a> <small>(3)</small></span><span><a href="#u-Glacipede">Glacipede</a> <small>(3)</small></span><span><a href="#u-Frostwyrm">Frostwyrm</a> <small>(4)</small></span><span><a href="#u-Glaciarch">Glaciarch</a> <small>(4)</small></span><span><a href="#u-Permafrost">Permafrost</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="ghost dodge 10/20/35% of attacks wispet ghoulet lanternwisp spectrix phantomare eclipsar wraithlord"><h3><span class="b" style="background:#7a5fb0">Ghost</span> <span class="gold">2 / 4 / 6</span></h3><div>Dodge 10/20/35% of attacks</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Wispet">Wispet</a> <small>(1)</small></span><span><a href="#u-Ghoulet">Ghoulet</a> <small>(2)</small></span><span><a href="#u-Lanternwisp">Lanternwisp</a> <small>(3)</small></span><span><a href="#u-Spectrix">Spectrix</a> <small>(3)</small></span><span><a href="#u-Phantomare">Phantomare</a> <small>(4)</small></span><span><a href="#u-Eclipsar">Eclipsar</a> <small>(5)</small></span><span><a href="#u-Wraithlord">Wraithlord</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="bug attack +10/20/30%, speed +10/20/35% beetlet sparkbug hummer mothwing pyrofly webspin glacipede hornetking stingtail scarabeast hivemind"><h3><span class="b" style="background:#a8c33a">Bug</span> <span class="gold">2 / 4 / 6</span></h3><div>Attack +10/20/30%, speed +10/20/35%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Beetlet">Beetlet</a> <small>(1)</small></span><span><a href="#u-Sparkbug">Sparkbug</a> <small>(1)</small></span><span><a href="#u-Hummer">Hummer</a> <small>(2)</small></span><span><a href="#u-Mothwing">Mothwing</a> <small>(2)</small></span><span><a href="#u-Pyrofly">Pyrofly</a> <small>(2)</small></span><span><a href="#u-Webspin">Webspin</a> <small>(2)</small></span><span><a href="#u-Glacipede">Glacipede</a> <small>(3)</small></span><span><a href="#u-Hornetking">Hornetking</a> <small>(3)</small></span><span><a href="#u-Stingtail">Stingtail</a> <small>(3)</small></span><span><a href="#u-Scarabeast">Scarabeast</a> <small>(4)</small></span><span><a href="#u-Hivemind">Hivemind</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="rock reflect 10/20/35% melee dmg, def +2/4/6 gritlet shellkin coralisk cragmite boulderhorn moltenback cragtitan obsidian monolith"><h3><span class="b" style="background:#a39a7e">Rock</span> <span class="gold">2 / 4 / 6</span></h3><div>Reflect 10/20/35% melee dmg, Def +2/4/6</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Gritlet">Gritlet</a> <small>(1)</small></span><span><a href="#u-Shellkin">Shellkin</a> <small>(1)</small></span><span><a href="#u-Coralisk">Coralisk</a> <small>(2)</small></span><span><a href="#u-Cragmite">Cragmite</a> <small>(2)</small></span><span><a href="#u-Boulderhorn">Boulderhorn</a> <small>(3)</small></span><span><a href="#u-Moltenback">Moltenback</a> <small>(3)</small></span><span><a href="#u-Cragtitan">Cragtitan</a> <small>(4)</small></span><span><a href="#u-Obsidian">Obsidian</a> <small>(4)</small></span><span><a href="#u-Monolith">Monolith</a> <small>(5)</small></span></div></div><div class="card syn s" data-k="ground defense +3/6/10, hp +10/20/35% burrowl gritlet pebblit boulderoo tuskboar gaiaphant quakeback magmawyrm terradrake colossus"><h3><span class="b" style="background:#c9a35a">Ground</span> <span class="gold">2 / 4 / 6</span></h3><div>Defense +3/6/10, HP +10/20/35%</div><div class="units mu" style="margin-top:6px"><span><a href="#u-Burrowl">Burrowl</a> <small>(1)</small></span><span><a href="#u-Gritlet">Gritlet</a> <small>(1)</small></span><span><a href="#u-Pebblit">Pebblit</a> <small>(1)</small></span><span><a href="#u-Boulderoo">Boulderoo</a> <small>(2)</small></span><span><a href="#u-Tuskboar">Tuskboar</a> <small>(2)</small></span><span><a href="#u-Gaiaphant">Gaiaphant</a> <small>(3)</small></span><span><a href="#u-Quakeback">Quakeback</a> <small>(3)</small></span><span><a href="#u-Magmawyrm">Magmawyrm</a> <small>(4)</small></span><span><a href="#u-Terradrake">Terradrake</a> <small>(4)</small></span><span><a href="#u-Colossus">Colossus</a> <small>(5)</small></span></div></div></section><section id="abilities"><h2>Abilities</h2><p class="mu">A unit's ability is determined by its first type.</p><div class="tbl"><table><tr><th>Ability</th><th>Effect</th><th>First types</th></tr><tr><td><b>Power Shot</b></td><td>Deals 3x Atk to its target. Scales with ability power.</td><td><span class="b" style="background:#c8c8c8">Normal</span><span class="b" style="background:#c9a6e8">Flying</span><span class="b" style="background:#b83a3a">Wild</span><span class="b" style="background:#a8c33a">Bug</span></td></tr><tr><td><b>Shockwave</b></td><td>Deals 2x Atk to all adjacent enemies. Scales with ability power.</td><td><span class="b" style="background:#d4483f">Fighting</span><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#9db4c4">Steel</span><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#c9a35a">Ground</span></td></tr><tr><td><b>Mend</b></td><td>Heals the weakest ally. Scales with ability power.</td><td><span class="b" style="background:#e0963c">Field</span><span class="b" style="background:#4f9bec">Water</span></td></tr><tr><td><b>Rally</b></td><td>Allies within 2 tiles gain +20% Atk. Scales with ability power.</td><td><span class="b" style="background:#ec6fa8">Sound</span></td></tr><tr><td><b>Paralyze</b></td><td>Stuns the target for 1.5s and deals 1.5x Atk. Scales with ability power.</td><td><span class="b" style="background:#f2d83a">Electric</span><span class="b" style="background:#e8609a">Psychic</span><span class="b" style="background:#8fe3f2">Ice</span></td></tr><tr><td><b>Drain</b></td><td>Deals 2.2x Atk and heals half of it. Scales with ability power.</td><td><span class="b" style="background:#6dcb78">Poison</span><span class="b" style="background:#5fbf4f">Grass</span><span class="b" style="background:#6b5a7e">Dark</span><span class="b" style="background:#7a5fb0">Ghost</span></td></tr></table></div></section><section id="items"><h2>Items</h2><p class="mu">Up to 3 per unit. Dropped by wild rounds and bosses; equip during prep.</p><div class="tbl"><table><tr><th>Item</th><th>Effect</th></tr><tr class="s" data-k="power band +8 attack"><td><b>Power Band</b></td><td>+8 Attack</td></tr><tr class="s" data-k="iron plate +8 defense"><td><b>Iron Plate</b></td><td>+8 Defense</td></tr><tr class="s" data-k="swift charm +25% attack speed"><td><b>Swift Charm</b></td><td>+25% attack speed</td></tr><tr class="s" data-k="mana orb +30 starting mana"><td><b>Mana Orb</b></td><td>+30 starting mana</td></tr><tr class="s" data-k="hearty berry +90 max hp"><td><b>Hearty Berry</b></td><td>+90 max HP</td></tr><tr class="s" data-k="sharp lens +25% crit chance"><td><b>Sharp Lens</b></td><td>+25% crit chance</td></tr><tr class="s" data-k="regrowth leaf regen 1.5% hp per sec"><td><b>Regrowth Leaf</b></td><td>Regen 1.5% HP per sec</td></tr><tr class="s" data-k="mind wand +40% ability power"><td><b>Mind Wand</b></td><td>+40% ability power</td></tr><tr class="s" data-k="speed scarf +35% move speed"><td><b>Speed Scarf</b></td><td>+35% move speed</td></tr><tr class="s" data-k="aegis charm starts with a shield (30% max hp)"><td><b>Aegis Charm</b></td><td>Starts with a shield (30% max HP)</td></tr><tr class="s" data-k="vampire fang heal 25% of attack damage"><td><b>Vampire Fang</b></td><td>Heal 25% of attack damage</td></tr><tr class="s" data-k="blast core attacks splash adjacent foes for 50%"><td><b>Blast Core</b></td><td>Attacks splash adjacent foes for 50%</td></tr><tr class="s" data-k="venom vial attacks poison for 2% hp/s"><td><b>Venom Vial</b></td><td>Attacks poison for 2% HP/s</td></tr><tr class="s" data-k="frost gem attacks slow the target 40%"><td><b>Frost Gem</b></td><td>Attacks slow the target 40%</td></tr><tr class="s" data-k="rage totem +30% attack"><td><b>Rage Totem</b></td><td>+30% Attack</td></tr><tr class="s" data-k="king's crown +12% to all stats"><td><b>King's Crown</b></td><td>+12% to all stats</td></tr><tr class="s" data-k="thorn mail reflect 20% of melee damage taken"><td><b>Thorn Mail</b></td><td>Reflect 20% of melee damage taken</td></tr><tr class="s" data-k="time gear +8 mana per attack"><td><b>Time Gear</b></td><td>+8 mana per attack</td></tr></table></div></section><section id="units"><h2>Units</h2><p class="mu">1-star base stats. 2-star = 2x HP &amp; 1.8x attack; 3-star = 4x HP &amp; 3.2x attack. Range 1 = melee.</p><h3>1-cost <span class="mu">(Common)</span></h3><div class="tbl"><table><tr><th>Unit</th><th>Types</th><th>HP</th><th>Atk</th><th>Def</th><th>Range</th><th>Mana</th><th>Ability</th></tr><tr class="s" id="u-Beetlet" data-k="beetlet bug normal power shot"><td><b>Beetlet</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Burrowl" data-k="burrowl ground flying shockwave"><td><b>Burrowl</b></td><td><span class="b" style="background:#c9a35a">Ground</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Chirpy" data-k="chirpy flying sound power shot"><td><b>Chirpy</b></td><td><span class="b" style="background:#c9a6e8">Flying</span><span class="b" style="background:#ec6fa8">Sound</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Cubby" data-k="cubby wild normal power shot"><td><b>Cubby</b></td><td><span class="b" style="background:#b83a3a">Wild</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Dewpup" data-k="dewpup water field mend"><td><b>Dewpup</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#e0963c">Field</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Dreamling" data-k="dreamling psychic normal paralyze"><td><b>Dreamling</b></td><td><span class="b" style="background:#e8609a">Psychic</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>51</td><td>8</td><td>3</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Embrit" data-k="embrit fire normal shockwave"><td><b>Embrit</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Fluffin" data-k="fluffin normal sound power shot"><td><b>Fluffin</b></td><td><span class="b" style="background:#c8c8c8">Normal</span><span class="b" style="background:#ec6fa8">Sound</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Frostkit" data-k="frostkit ice normal paralyze"><td><b>Frostkit</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Gritlet" data-k="gritlet rock ground shockwave"><td><b>Gritlet</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#c9a35a">Ground</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Mothlet" data-k="mothlet poison flying drain"><td><b>Mothlet</b></td><td><span class="b" style="background:#6dcb78">Poison</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>51</td><td>8</td><td>3</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Pebblit" data-k="pebblit ground normal shockwave"><td><b>Pebblit</b></td><td><span class="b" style="background:#c9a35a">Ground</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Pupling" data-k="pupling normal field power shot"><td><b>Pupling</b></td><td><span class="b" style="background:#c8c8c8">Normal</span><span class="b" style="background:#e0963c">Field</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Scrapper" data-k="scrapper fighting normal shockwave"><td><b>Scrapper</b></td><td><span class="b" style="background:#d4483f">Fighting</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Shadelet" data-k="shadelet dark wild drain"><td><b>Shadelet</b></td><td><span class="b" style="background:#6b5a7e">Dark</span><span class="b" style="background:#b83a3a">Wild</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Shellkin" data-k="shellkin water rock mend"><td><b>Shellkin</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#a39a7e">Rock</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Sparkbug" data-k="sparkbug bug electric power shot"><td><b>Sparkbug</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#f2d83a">Electric</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Sprigle" data-k="sprigle grass normal drain"><td><b>Sprigle</b></td><td><span class="b" style="background:#5fbf4f">Grass</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>51</td><td>8</td><td>3</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Tinkit" data-k="tinkit steel normal shockwave"><td><b>Tinkit</b></td><td><span class="b" style="background:#9db4c4">Steel</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Wispet" data-k="wispet ghost dark drain"><td><b>Wispet</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>75</td><td>7</td><td>5</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Zaplet" data-k="zaplet electric wild paralyze"><td><b>Zaplet</b></td><td><span class="b" style="background:#f2d83a">Electric</span><span class="b" style="background:#b83a3a">Wild</span></td><td>51</td><td>8</td><td>3</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr></table></div><h3>2-cost <span class="mu">(Uncommon)</span></h3><div class="tbl"><table><tr><th>Unit</th><th>Types</th><th>HP</th><th>Atk</th><th>Def</th><th>Range</th><th>Mana</th><th>Ability</th></tr><tr class="s" id="u-Bolthide" data-k="bolthide steel electric shockwave"><td><b>Bolthide</b></td><td><span class="b" style="background:#9db4c4">Steel</span><span class="b" style="background:#f2d83a">Electric</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Boulderoo" data-k="boulderoo ground fighting shockwave"><td><b>Boulderoo</b></td><td><span class="b" style="background:#c9a35a">Ground</span><span class="b" style="background:#d4483f">Fighting</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Cindrake" data-k="cindrake fire wild shockwave"><td><b>Cindrake</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#b83a3a">Wild</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Coralisk" data-k="coralisk water rock mend"><td><b>Coralisk</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#a39a7e">Rock</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Cragmite" data-k="cragmite rock fighting shockwave"><td><b>Cragmite</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#d4483f">Fighting</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Ghoulet" data-k="ghoulet ghost grass drain"><td><b>Ghoulet</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#5fbf4f">Grass</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Glimmerfin" data-k="glimmerfin water ice mend"><td><b>Glimmerfin</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#8fe3f2">Ice</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Gloomcat" data-k="gloomcat dark normal drain"><td><b>Gloomcat</b></td><td><span class="b" style="background:#6b5a7e">Dark</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Hexcub" data-k="hexcub psychic dark paralyze"><td><b>Hexcub</b></td><td><span class="b" style="background:#e8609a">Psychic</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Hummer" data-k="hummer sound bug rally"><td><b>Hummer</b></td><td><span class="b" style="background:#ec6fa8">Sound</span><span class="b" style="background:#a8c33a">Bug</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Allies within 2 tiles gain +20% Atk.">Rally</td></tr><tr class="s" id="u-Ironpup" data-k="ironpup steel normal shockwave"><td><b>Ironpup</b></td><td><span class="b" style="background:#9db4c4">Steel</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Leafawn" data-k="leafawn grass field drain"><td><b>Leafawn</b></td><td><span class="b" style="background:#5fbf4f">Grass</span><span class="b" style="background:#e0963c">Field</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Mindling" data-k="mindling psychic sound paralyze"><td><b>Mindling</b></td><td><span class="b" style="background:#e8609a">Psychic</span><span class="b" style="background:#ec6fa8">Sound</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Mothwing" data-k="mothwing bug flying power shot"><td><b>Mothwing</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Pyrofly" data-k="pyrofly fire bug shockwave"><td><b>Pyrofly</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#a8c33a">Bug</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Snowhare" data-k="snowhare ice field paralyze"><td><b>Snowhare</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#e0963c">Field</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Tidefin" data-k="tidefin water flying mend"><td><b>Tidefin</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Toxipod" data-k="toxipod poison grass drain"><td><b>Toxipod</b></td><td><span class="b" style="background:#6dcb78">Poison</span><span class="b" style="background:#5fbf4f">Grass</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Tuskboar" data-k="tuskboar wild ground power shot"><td><b>Tuskboar</b></td><td><span class="b" style="background:#b83a3a">Wild</span><span class="b" style="background:#c9a35a">Ground</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Voltmouse" data-k="voltmouse electric field paralyze"><td><b>Voltmouse</b></td><td><span class="b" style="background:#f2d83a">Electric</span><span class="b" style="background:#e0963c">Field</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Warblow" data-k="warblow sound flying rally"><td><b>Warblow</b></td><td><span class="b" style="background:#ec6fa8">Sound</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>77</td><td>12</td><td>5</td><td>3</td><td>70</td><td title="Allies within 2 tiles gain +20% Atk.">Rally</td></tr><tr class="s" id="u-Webspin" data-k="webspin bug poison power shot"><td><b>Webspin</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#6dcb78">Poison</span></td><td>113</td><td>10</td><td>7</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr></table></div><h3>3-cost <span class="mu">(Rare)</span></h3><div class="tbl"><table><tr><th>Unit</th><th>Types</th><th>HP</th><th>Atk</th><th>Def</th><th>Range</th><th>Mana</th><th>Ability</th></tr><tr class="s" id="u-Aquadon" data-k="aquadon water psychic mend"><td><b>Aquadon</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#e8609a">Psychic</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Blazehorn" data-k="blazehorn fire fighting shockwave"><td><b>Blazehorn</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#d4483f">Fighting</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Boulderhorn" data-k="boulderhorn rock wild shockwave"><td><b>Boulderhorn</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#b83a3a">Wild</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Brawlbear" data-k="brawlbear fighting wild shockwave"><td><b>Brawlbear</b></td><td><span class="b" style="background:#d4483f">Fighting</span><span class="b" style="background:#b83a3a">Wild</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Cryobear" data-k="cryobear ice fighting paralyze"><td><b>Cryobear</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#d4483f">Fighting</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Echobat" data-k="echobat sound dark rally"><td><b>Echobat</b></td><td><span class="b" style="background:#ec6fa8">Sound</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>111</td><td>16</td><td>8</td><td>3</td><td>70</td><td title="Allies within 2 tiles gain +20% Atk.">Rally</td></tr><tr class="s" id="u-Gaiaphant" data-k="gaiaphant ground field shockwave"><td><b>Gaiaphant</b></td><td><span class="b" style="background:#c9a35a">Ground</span><span class="b" style="background:#e0963c">Field</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Glacipede" data-k="glacipede ice bug paralyze"><td><b>Glacipede</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#a8c33a">Bug</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Hornetking" data-k="hornetking bug fighting power shot"><td><b>Hornetking</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#d4483f">Fighting</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Lanternwisp" data-k="lanternwisp ghost fire drain"><td><b>Lanternwisp</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#f0702f">Fire</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Meadowdeer" data-k="meadowdeer field grass mend"><td><b>Meadowdeer</b></td><td><span class="b" style="background:#e0963c">Field</span><span class="b" style="background:#5fbf4f">Grass</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Moltenback" data-k="moltenback rock fire shockwave"><td><b>Moltenback</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#f0702f">Fire</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Quakeback" data-k="quakeback ground steel shockwave"><td><b>Quakeback</b></td><td><span class="b" style="background:#c9a35a">Ground</span><span class="b" style="background:#9db4c4">Steel</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Sagewing" data-k="sagewing psychic flying paralyze"><td><b>Sagewing</b></td><td><span class="b" style="background:#e8609a">Psychic</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>111</td><td>16</td><td>8</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Spectrix" data-k="spectrix ghost psychic drain"><td><b>Spectrix</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#e8609a">Psychic</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Steelhound" data-k="steelhound steel fire shockwave"><td><b>Steelhound</b></td><td><span class="b" style="background:#9db4c4">Steel</span><span class="b" style="background:#f0702f">Fire</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Stingtail" data-k="stingtail poison bug drain"><td><b>Stingtail</b></td><td><span class="b" style="background:#6dcb78">Poison</span><span class="b" style="background:#a8c33a">Bug</span></td><td>111</td><td>16</td><td>8</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Stormraptor" data-k="stormraptor electric flying paralyze"><td><b>Stormraptor</b></td><td><span class="b" style="background:#f2d83a">Electric</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>111</td><td>16</td><td>8</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Tempestcrow" data-k="tempestcrow flying dark power shot"><td><b>Tempestcrow</b></td><td><span class="b" style="background:#c9a6e8">Flying</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>163</td><td>14</td><td>10</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Thornlion" data-k="thornlion grass wild drain"><td><b>Thornlion</b></td><td><span class="b" style="background:#5fbf4f">Grass</span><span class="b" style="background:#b83a3a">Wild</span></td><td>111</td><td>16</td><td>8</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Venomaw" data-k="venomaw poison dark drain"><td><b>Venomaw</b></td><td><span class="b" style="background:#6dcb78">Poison</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>111</td><td>16</td><td>8</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr></table></div><h3>4-cost <span class="mu">(Epic)</span></h3><div class="tbl"><table><tr><th>Unit</th><th>Types</th><th>HP</th><th>Atk</th><th>Def</th><th>Range</th><th>Mana</th><th>Ability</th></tr><tr class="s" id="u-Cragtitan" data-k="cragtitan rock steel shockwave"><td><b>Cragtitan</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#9db4c4">Steel</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Floraqueen" data-k="floraqueen grass psychic drain"><td><b>Floraqueen</b></td><td><span class="b" style="background:#5fbf4f">Grass</span><span class="b" style="background:#e8609a">Psychic</span></td><td>153</td><td>22</td><td>11</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Frostwyrm" data-k="frostwyrm ice flying paralyze"><td><b>Frostwyrm</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Glaciarch" data-k="glaciarch ice water paralyze"><td><b>Glaciarch</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#4f9bec">Water</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Harmonix" data-k="harmonix sound psychic rally"><td><b>Harmonix</b></td><td><span class="b" style="background:#ec6fa8">Sound</span><span class="b" style="background:#e8609a">Psychic</span></td><td>153</td><td>22</td><td>11</td><td>3</td><td>70</td><td title="Allies within 2 tiles gain +20% Atk.">Rally</td></tr><tr class="s" id="u-Magmawyrm" data-k="magmawyrm fire ground shockwave"><td><b>Magmawyrm</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#c9a35a">Ground</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Mystifox" data-k="mystifox psychic normal paralyze"><td><b>Mystifox</b></td><td><span class="b" style="background:#e8609a">Psychic</span><span class="b" style="background:#c8c8c8">Normal</span></td><td>153</td><td>22</td><td>11</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Nightstalker" data-k="nightstalker dark wild drain"><td><b>Nightstalker</b></td><td><span class="b" style="background:#6b5a7e">Dark</span><span class="b" style="background:#b83a3a">Wild</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Obsidian" data-k="obsidian rock dark shockwave"><td><b>Obsidian</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Phantomare" data-k="phantomare ghost wild drain"><td><b>Phantomare</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#b83a3a">Wild</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Scarabeast" data-k="scarabeast bug steel power shot"><td><b>Scarabeast</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#9db4c4">Steel</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Terradrake" data-k="terradrake ground flying shockwave"><td><b>Terradrake</b></td><td><span class="b" style="background:#c9a35a">Ground</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Thunderstag" data-k="thunderstag electric field paralyze"><td><b>Thunderstag</b></td><td><span class="b" style="background:#f2d83a">Electric</span><span class="b" style="background:#e0963c">Field</span></td><td>153</td><td>22</td><td>11</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Titanfist" data-k="titanfist fighting steel shockwave"><td><b>Titanfist</b></td><td><span class="b" style="background:#d4483f">Fighting</span><span class="b" style="background:#9db4c4">Steel</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Tsunamar" data-k="tsunamar water sound mend"><td><b>Tsunamar</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#ec6fa8">Sound</span></td><td>225</td><td>19</td><td>13</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Voltwolf" data-k="voltwolf electric wild paralyze"><td><b>Voltwolf</b></td><td><span class="b" style="background:#f2d83a">Electric</span><span class="b" style="background:#b83a3a">Wild</span></td><td>153</td><td>22</td><td>11</td><td>3</td><td>70</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Wailspore" data-k="wailspore sound poison rally"><td><b>Wailspore</b></td><td><span class="b" style="background:#ec6fa8">Sound</span><span class="b" style="background:#6dcb78">Poison</span></td><td>153</td><td>22</td><td>11</td><td>3</td><td>70</td><td title="Allies within 2 tiles gain +20% Atk.">Rally</td></tr></table></div><h3>5-cost <span class="mu">(Ultra)</span></h3><div class="tbl"><table><tr><th>Unit</th><th>Types</th><th>HP</th><th>Atk</th><th>Def</th><th>Range</th><th>Mana</th><th>Ability</th></tr><tr class="s" id="u-Abyssal" data-k="abyssal water dark mend"><td><b>Abyssal</b></td><td><span class="b" style="background:#4f9bec">Water</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Heals the weakest ally.">Mend</td></tr><tr class="s" id="u-Colossus" data-k="colossus steel ground shockwave"><td><b>Colossus</b></td><td><span class="b" style="background:#9db4c4">Steel</span><span class="b" style="background:#c9a35a">Ground</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Eclipsar" data-k="eclipsar ghost dark drain"><td><b>Eclipsar</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#6b5a7e">Dark</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Emberphoenix" data-k="emberphoenix fire flying shockwave"><td><b>Emberphoenix</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#c9a6e8">Flying</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Hivemind" data-k="hivemind bug psychic power shot"><td><b>Hivemind</b></td><td><span class="b" style="background:#a8c33a">Bug</span><span class="b" style="background:#e8609a">Psychic</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Monolith" data-k="monolith rock psychic shockwave"><td><b>Monolith</b></td><td><span class="b" style="background:#a39a7e">Rock</span><span class="b" style="background:#e8609a">Psychic</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Noxqueen" data-k="noxqueen poison psychic drain"><td><b>Noxqueen</b></td><td><span class="b" style="background:#6dcb78">Poison</span><span class="b" style="background:#e8609a">Psychic</span></td><td>213</td><td>30</td><td>15</td><td>3</td><td>70</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr><tr class="s" id="u-Permafrost" data-k="permafrost ice psychic paralyze"><td><b>Permafrost</b></td><td><span class="b" style="background:#8fe3f2">Ice</span><span class="b" style="background:#e8609a">Psychic</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Stuns the target for 1.5s and deals 1.5x Atk.">Paralyze</td></tr><tr class="s" id="u-Skybreaker" data-k="skybreaker flying electric power shot"><td><b>Skybreaker</b></td><td><span class="b" style="background:#c9a6e8">Flying</span><span class="b" style="background:#f2d83a">Electric</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 3x Atk to its target.">Power Shot</td></tr><tr class="s" id="u-Solarion" data-k="solarion fire psychic shockwave"><td><b>Solarion</b></td><td><span class="b" style="background:#f0702f">Fire</span><span class="b" style="background:#e8609a">Psychic</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 2x Atk to all adjacent enemies.">Shockwave</td></tr><tr class="s" id="u-Wraithlord" data-k="wraithlord ghost steel drain"><td><b>Wraithlord</b></td><td><span class="b" style="background:#7a5fb0">Ghost</span><span class="b" style="background:#9db4c4">Steel</span></td><td>313</td><td>26</td><td>17</td><td>1</td><td>90</td><td title="Deals 2.2x Atk and heals half of it.">Drain</td></tr></table></div></section></main><script>const q=document.getElementById('q');q.oninput=()=>{const v=q.value.trim().toLowerCase();document.querySelectorAll('.s').forEach(e=>e.classList.toggle('hide',!!v&&!e.dataset.k.includes(v)))}</script></body></html>
+\ No newline at end of file
+diff --git a/server/index.js b/server/index.js
+index 5d31c51..8988e37 100644
+--- a/server/index.js
++++ b/server/index.js
+@@ -13,7 +13,7 @@ db.open(DATA_DIR);
+ 
+ /* ------------------------------------------------------------------ static + REST */
+ const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.ico': 'image/x-icon' };
+-const STATIC = { '/': 'public/index.html', '/offline': 'public/offline.html', '/shared/game.js': 'shared/game.js' };
++const STATIC = { '/': 'public/index.html', '/offline': 'public/offline.html', '/wiki': 'public/wiki.html', '/shared/game.js': 'shared/game.js' };
+ const hits = new Map();
+ function limited(ip, max = 12, windowMs = 60000) {
+   const now = Date.now(); const h = hits.get(ip);
+@@ -43,6 +43,11 @@ const server = http.createServer((req, res) => {
+       json(res, 200, { token: r.token, name: r.user.name });
+     });
+   }
++  if (req.method === 'GET' && url === '/api/assets') {
++    const list = d => { try { return fs.readdirSync(path.join(ROOT, 'public', 'assets', d)).filter(f => f.endsWith('.png')).map(f => f.slice(0, -4)); } catch { return []; } };
++    res.setHeader('Cache-Control', 'no-cache');
++    return json(res, 200, { portraits: list('portraits'), items: list('items') });
++  }
+   if (req.method === 'GET' && url === '/api/leaderboard') return json(res, 200, db.leaderboard(50));
+   if (url === '/favicon.ico') { res.writeHead(204); return res.end(); }
+   if (req.method === 'GET' && url === '/health') return json(res, 200, { ok: true });
+diff --git a/tools/build-wiki.js b/tools/build-wiki.js
+new file mode 100644
+index 0000000..9757979
+--- /dev/null
++++ b/tools/build-wiki.js
+@@ -0,0 +1,88 @@
++const G=require('../shared/game.js');
++const {TYPES,ROSTER,ITEMS,ABIL,HPM,ATM,ODDS,EXP,PVE_STAGES,STAGE_DUR}=G;
++const tn=t=>TYPES[t].n;
++const cap=s=>s[0].toUpperCase()+s.slice(1);
++const R=['','Common','Uncommon','Rare','Epic','Ultra'];
++const typeKeys=Object.keys(TYPES);
++const unitsOf=t=>ROSTER.filter(u=>u.types.includes(t));
++const abilityOf=u=>ABIL[u.ab];
++const f=n=>Math.round(n);
++// ---------- synergy text per tier (value lists in order of thresholds)
++const tierVals=t=>{const T=TYPES[t];return T.th.map((n,i)=>({n,fx:T.fx(i+1)}))};
++function tierLine(t,i){const x=tierVals(t)[i];return x.n+' units: '+TYPES[t].desc.split(/[:,]/)[0]}
++// ---------- general rules
++const rules=[
++['Board & bench','Your level equals the number of units you may field (Level 2 = 2 units … Level 9 = 9). The bench holds 8 units. You can only place units on the bottom 3 rows of the board.'],
++['Merging','Three copies of the same unit at the same star level merge into one unit of the next star (max 3 stars). Items on the merged copies are kept (up to 3 per unit; extras return to your item stash). 2-star units have 2x HP and 1.8x attack; 3-star units have 4x HP and 3.2x attack.'],
++['Buying & selling','Rerolling the shop costs 1 gold. Buying XP costs 4 gold for 4 XP. Selling gives back the cost for a 1-star unit, (cost x 3 - 1) for a 2-star and (cost x 9 - 1) for a 3-star, and returns equipped items.'],
++['Income each round','Base 4 gold (stages 1-3) or 5 gold (stage 4+), +1 for winning, +1 interest per 10 gold you hold (max +5), and a streak bonus for consecutive wins or losses: 2-3 streak +1, 4-5 streak +2, 6+ streak +3. You also gain 2 XP every round.'],
++['Rounds','Stages 1, 2 and 3 are wild encounters (very weak). Stage 9, 14, 19, 24, 28, 32, 36 and 40 are boss fights. Every other stage is player-vs-player (or vs a bot team). Winning a wild round drops items (1 item, 2 on boss stages).'],
++['Taking damage','Losing a PvP round costs you 2 + floor(stage x 0.6) + the number of surviving enemy units, in HP. Losing a wild round costs 1 + floor(stage / 2) + surviving enemies. You start with 100 HP; at 0 you are eliminated.'],
++['Combat basics','Units move toward the nearest enemy and attack automatically. Base attack speed is 0.8 attacks per second. Each attack gives +10 mana (plus any bonuses) and being hit gives +4 mana; when mana is full the unit casts its ability instead of attacking. Melee units have 90 mana, ranged units 70. Damage = attack x 30 / (30 + target defense). Everyone has a 5% base crit chance (crits deal 1.5x damage). A fight lasts at most 45 seconds; if both sides survive, the side with more total remaining HP wins.'],
++['Synergies','Count the number of DIFFERENT species you have on the board that share a type (two copies of the same unit count once). Reaching a threshold activates that tier of the bonus for every unit of that type on your team. Units have two types, so they count towards two synergies.'],
++['Ranked (online)','Standard Elo, K=32, starting at 1000. Only ranked games with 2+ human players change ratings; each human is scored against every other human by finishing order. Quitting counts as an elimination.']
++];
++// ---------- markdown
++let md=`# Creature Auto Arena - Wiki\n\n_Generated from the game's data. ${ROSTER.length} units, ${typeKeys.length} synergies, ${ITEMS.length} items._\n\n## Contents\n1. [Rules](#rules)\n2. [Shop odds & levels](#shop-odds--levels)\n3. [Synergies](#synergies)\n4. [Abilities](#abilities)\n5. [Items](#items)\n6. [Units](#units)\n\n## Rules\n`;
++for(const [h,t] of rules)md+=`- **${h}.** ${t}\n`;
++md+=`\n## Shop odds & levels\nChance for each shop slot to be a unit of that cost, by your level. XP needed to reach the next level in the last column.\n\n| Level | 1-cost | 2-cost | 3-cost | 4-cost | 5-cost | XP to next level |\n|---|---|---|---|---|---|---|\n`;
++for(let l=1;l<=9;l++)md+=`| ${l} | ${ODDS[l].map(p=>p?Math.round(p*100)+'%':'-').join(' | ')} | ${l<9?(G.EXP[l+1]):'max'} |\n`;
++md+=`\n## Synergies\n_Thresholds count different species of that type on your board. Values in each effect line are listed in threshold order._\n\n`;
++md+=`| Synergy | Thresholds | Effect (per threshold) | Units |\n|---|---|---|---|\n`;
++for(const t of typeKeys)md+=`| **${tn(t)}** | ${TYPES[t].th.join(' / ')} | ${TYPES[t].desc} | ${unitsOf(t).length} |\n`;
++md+=`\n### Synergy details\n`;
++for(const t of typeKeys){
++  md+=`\n#### ${tn(t)}\n- **Thresholds:** ${TYPES[t].th.join(' / ')} different ${tn(t)} units\n- **Effect:** ${TYPES[t].desc}\n- **Ability style of ${tn(t)}-primary units:** ${ABIL[G.ROSTER.find(u=>u.types[0]===t)?.ab||'bolt'][0]}\n`;
++  const us=unitsOf(t).sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name));
++  md+=`- **Units (${us.length}):** ${us.map(u=>`${u.name} (${u.cost})`).join(', ')}\n`;
++}
++md+=`\n## Abilities\nEvery unit's ability is set by its **first** type.\n\n| Ability | Effect | Used by first type |\n|---|---|---|\n`;
++const abKinds=Object.keys(ABIL);
++for(const k of abKinds)md+=`| **${ABIL[k][0]}** | ${ABIL[k][1]} Scales with ability power. | ${typeKeys.filter(t=>ROSTER.find(u=>u.types[0]===t&&u.ab===k)).map(tn).join(', ')} |\n`;
++md+=`\n## Items\nEach unit can hold up to 3 items. Items drop from wild rounds and bosses; drag them onto a unit during the prep phase.\n\n| Item | Effect |\n|---|---|\n`;
++for(const i of ITEMS)md+=`| **${i.n}** | ${i.d} |\n`;
++md+=`\n## Units\nBase stats are for 1-star. 2-star = 2x HP, 1.8x attack. 3-star = 4x HP, 3.2x attack. Range 1 = melee. "Mana" is the amount needed to cast.\n`;
++for(let c=1;c<=5;c++){
++  md+=`\n### ${c}-cost (${R[c]})\n\n| Unit | Types | HP | Attack | Defense | Range | Mana | Ability |\n|---|---|---|---|---|---|---|---|\n`;
++  for(const u of ROSTER.filter(u=>u.cost===c).sort((a,b)=>a.name.localeCompare(b.name)))
++    md+=`| **${u.name}** | ${u.types.map(tn).join(' / ')} | ${u.hp} | ${u.atk} | ${u.def} | ${u.range} | ${u.maxMana} | ${abilityOf(u)[0]} |\n`;
++}
++const OUT=require('path').join(__dirname,'..');
++require('fs').writeFileSync(require('path').join(__dirname,'..','Creature-Auto-Arena-Wiki.md'),md);
++
++// ---------- html
++const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
++const badge=t=>`<span class="b" style="background:${TYPES[t].c}">${tn(t)}</span>`;
++let h=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Creature Auto Arena Wiki</title><style>
++:root{--bg:#141a2e;--p:#222a48;--p2:#2c3558;--tx:#eef1fb;--mu:#9aa5c9;--hi:#ffd84a;--ln:#0b0f1e}
++*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 "Trebuchet MS",Verdana,sans-serif}
++header{position:sticky;top:0;z-index:5;background:#0f1424ee;backdrop-filter:blur(6px);border-bottom:3px solid var(--ln);padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
++header h1{margin:0;font-size:20px}nav{display:flex;gap:10px;flex-wrap:wrap}nav a{color:#8ec5ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
++#q{margin-left:auto;padding:7px 10px;border-radius:8px;border:2px solid var(--ln);background:var(--p);color:var(--tx);min-width:200px;font:inherit}
++main{max-width:1100px;margin:0 auto;padding:16px}section{margin:0 0 34px}h2{border-bottom:3px solid var(--ln);padding-bottom:4px;color:var(--hi)}
++.card{background:var(--p);border:3px solid var(--ln);border-radius:12px;padding:12px 14px;margin:10px 0}
++table{width:100%;border-collapse:collapse;background:var(--p);border:3px solid var(--ln);border-radius:10px;overflow:hidden}
++th,td{padding:6px 9px;text-align:left;border-bottom:1px solid var(--ln);vertical-align:top}th{background:var(--p2);font-size:13px;color:var(--mu)}
++.b{display:inline-block;padding:1px 8px;border-radius:99px;color:#111;font-size:12px;border:2px solid #000;margin:1px 2px 1px 0}
++.mu{color:var(--mu)}.hide{display:none!important}ul{margin:6px 0;padding-left:20px}.gold{color:var(--hi)}
++.syn h3{margin:0 0 4px}.units a{color:#cfe3ff;text-decoration:none}.units span{display:inline-block;margin:2px 8px 2px 0}
++.tbl{overflow-x:auto}
++</style></head><body><header><h1>Creature Auto Arena Wiki</h1><nav><a href="/">← Back to game</a><a href="#rules">Rules</a><a href="#odds">Shop odds</a><a href="#synergies">Synergies</a><a href="#abilities">Abilities</a><a href="#items">Items</a><a href="#units">Units</a></nav><input id="q" placeholder="Search units, synergies, items…"></header><main>`;
++h+=`<section id="rules"><h2>Rules</h2><div class="card"><ul>`+rules.map(([a,b])=>`<li><b>${esc(a)}.</b> ${esc(b)}</li>`).join('')+`</ul></div></section>`;
++h+=`<section id="odds"><h2>Shop odds &amp; levels</h2><div class="tbl"><table><tr><th>Level</th><th>1-cost</th><th>2-cost</th><th>3-cost</th><th>4-cost</th><th>5-cost</th><th>XP to next</th></tr>`;
++for(let l=1;l<=9;l++)h+=`<tr><td>${l}</td>${ODDS[l].map(p=>`<td>${p?Math.round(p*100)+'%':'–'}</td>`).join('')}<td>${l<9?EXP[l+1]:'max'}</td></tr>`;
++h+=`</table></div></section><section id="synergies"><h2>Synergies</h2><p class="mu">Thresholds count <b>different species</b> of that type on your board. Effect values are listed in threshold order.</p>`;
++for(const t of typeKeys){const us=unitsOf(t).sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name));
++  h+=`<div class="card syn s" data-k="${esc((tn(t)+' '+TYPES[t].desc+' '+us.map(u=>u.name).join(' ')).toLowerCase())}"><h3>${badge(t)} <span class="gold">${TYPES[t].th.join(' / ')}</span></h3><div>${esc(TYPES[t].desc)}</div><div class="units mu" style="margin-top:6px">${us.map(u=>`<span><a href="#u-${u.name}">${u.name}</a> <small>(${u.cost})</small></span>`).join('')}</div></div>`}
++h+=`</section><section id="abilities"><h2>Abilities</h2><p class="mu">A unit's ability is determined by its first type.</p><div class="tbl"><table><tr><th>Ability</th><th>Effect</th><th>First types</th></tr>`;
++for(const k of abKinds)h+=`<tr><td><b>${ABIL[k][0]}</b></td><td>${esc(ABIL[k][1])} Scales with ability power.</td><td>${typeKeys.filter(t=>ROSTER.find(u=>u.types[0]===t&&u.ab===k)).map(badge).join('')}</td></tr>`;
++h+=`</table></div></section><section id="items"><h2>Items</h2><p class="mu">Up to 3 per unit. Dropped by wild rounds and bosses; equip during prep.</p><div class="tbl"><table><tr><th>Item</th><th>Effect</th></tr>`;
++for(const i of ITEMS)h+=`<tr class="s" data-k="${esc((i.n+' '+i.d).toLowerCase())}"><td><b>${esc(i.n)}</b></td><td>${esc(i.d)}</td></tr>`;
++h+=`</table></div></section><section id="units"><h2>Units</h2><p class="mu">1-star base stats. 2-star = 2x HP &amp; 1.8x attack; 3-star = 4x HP &amp; 3.2x attack. Range 1 = melee.</p>`;
++for(let c=1;c<=5;c++){h+=`<h3>${c}-cost <span class="mu">(${R[c]})</span></h3><div class="tbl"><table><tr><th>Unit</th><th>Types</th><th>HP</th><th>Atk</th><th>Def</th><th>Range</th><th>Mana</th><th>Ability</th></tr>`;
++  for(const u of ROSTER.filter(u=>u.cost===c).sort((a,b)=>a.name.localeCompare(b.name)))
++    h+=`<tr class="s" id="u-${u.name}" data-k="${esc((u.name+' '+u.types.map(tn).join(' ')+' '+abilityOf(u)[0]).toLowerCase())}"><td><b>${u.name}</b></td><td>${u.types.map(badge).join('')}</td><td>${u.hp}</td><td>${u.atk}</td><td>${u.def}</td><td>${u.range}</td><td>${u.maxMana}</td><td title="${esc(abilityOf(u)[1])}">${abilityOf(u)[0]}</td></tr>`;
++  h+=`</table></div>`}
++h+=`</section></main><script>const q=document.getElementById('q');q.oninput=()=>{const v=q.value.trim().toLowerCase();document.querySelectorAll('.s').forEach(e=>e.classList.toggle('hide',!!v&&!e.dataset.k.includes(v)))}</script></body></html>`;
++require('fs').writeFileSync(require('path').join(__dirname,'..','public','wiki.html'),h);
++console.log('units',ROSTER.length,'syn',typeKeys.length,'md bytes',md.length,'html bytes',h.length);

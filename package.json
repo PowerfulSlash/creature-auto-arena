@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "Online auto-battler with lobbies and an Elo ladder",
   "main": "server/index.js",
-  "scripts": { "start": "node server/index.js" },
-  "engines": { "node": ">=22.13" },
-  "dependencies": { "ws": "^8.18.0" },
+  "scripts": {
+    "start": "node server/index.js",
+    "wiki": "node tools/build-wiki.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
   "license": "GPL-3.0"
 }

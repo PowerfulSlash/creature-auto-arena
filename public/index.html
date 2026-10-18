@@ -76,9 +76,26 @@ canvas#cv{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelate
 #xpbar{position:relative;height:20px;background:#171b30;border:2px solid #000;border-radius:7px;overflow:hidden}
 #xpbar div{height:100%;background:#3b7bd6;width:0}
 #xpbar span{position:absolute;inset:0;text-align:center;font-size:12px;line-height:16px}
-#tip{position:fixed;display:none;min-width:180px;max-width:240px;padding:8px 10px;font-size:12px;z-index:10;pointer-events:none;line-height:1.35}
-#tip h4{margin:0 0 3px;font-size:15px}
-#tip .m{color:var(--mut)}
+#tip{position:fixed;display:none;width:330px;padding:10px;font-size:13px;z-index:30;pointer-events:none;line-height:1.3;background:#1b2038f4;border:3px solid #000;border-radius:12px;box-shadow:0 6px 0 #0007,inset 0 2px 0 rgba(255,255,255,.12)}
+#tip .top{display:flex;gap:10px;align-items:center}
+#tip .pt{width:76px;height:76px;flex:none;border:3px solid #000;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#tip .pt img,#tip .pt canvas{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+#tip .nm{flex:1;min-width:0}#tip h4{margin:0;font-size:21px;-webkit-text-stroke:.5px #000;paint-order:stroke fill}
+#tip .rar{color:#8f98b8;font-size:13px;letter-spacing:.5px}#tip .stars{color:#ffd84a;font-size:17px;letter-spacing:1px;text-shadow:0 1px 0 #000}
+#tip .tps{display:flex;gap:6px}#tip .tps .ico{width:38px;height:38px;font-size:12px;border-width:3px}
+#tip .bar{position:relative;height:19px;border:2px solid #000;border-radius:3px;margin-top:6px;overflow:hidden;background:#12162a;text-align:center;font-size:13px;line-height:15px;text-shadow:0 1px 1px #000,0 0 3px #000}
+#tip .bar i{position:absolute;left:0;top:0;bottom:0}#tip .bar b{position:relative}
+#tip .hpb i{background:linear-gradient(#9de050,#5fa82a)}#tip .ppb i{background:linear-gradient(#6fb4ff,#3d7fd8)}
+#tip .stats{display:grid;grid-template-columns:repeat(2,1fr) 54px;grid-auto-flow:column;grid-template-rows:repeat(3,auto);gap:5px;margin-top:8px}
+#tip .st{background:#2d3556;border:2px solid #000;border-radius:7px;padding:3px 7px;display:flex;align-items:center;gap:6px;font-size:14px}
+#tip .st em{font-style:normal;color:#8f98b8;font-size:11px;width:30px}
+#tip .rng{grid-column:3;grid-row:1/4;background:#2d3556;border:2px solid #000;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:24px}
+#tip .rng small{font-size:10px;color:#8f98b8}
+#tip .ab{margin-top:9px;border-top:2px solid #000;padding-top:7px}
+#tip .ab h5{margin:0 0 3px;font-size:17px;-webkit-text-stroke:.4px #000;paint-order:stroke fill}
+#tip .ab p{margin:0;color:#dfe5f8}#tip .ab .cur{color:#ffd84a}#tip .ab b{color:#c9b3ff}
+#tip .its{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}#tip .its span{background:#2d3556;border:2px solid #000;border-radius:99px;padding:1px 8px;font-size:12px}
+#tip.item .pt{border-radius:50%}#tip .glyph{font-size:34px;color:#222}
 #msg{position:fixed;left:50%;top:90px;transform:translateX(-50%);padding:6px 14px;background:#000a;border-radius:8px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none}
 #banner{position:fixed;left:0;right:0;top:34%;text-align:center;font-size:64px;color:#fff;text-shadow:0 4px 0 #000,0 0 20px #000;pointer-events:none;opacity:0;transition:opacity .3s;letter-spacing:2px}
 #over,#help{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:20}
@@ -130,6 +147,7 @@ body:not(.ingame) .g,body:not(.ingame) #tip,body:not(.ingame) #banner{display:no
   <div id="side" class="g">
     <button id="bHelp" title="Help">?</button>
     <button id="bFs" title="Fullscreen">[]</button>
+    <button id="bWiki" title="Open the wiki">W</button>
     <button id="bSpeed" title="Battle speed">1x</button>
     <button id="bNew" title="Leave match">X</button>
   </div>
@@ -169,7 +187,7 @@ body:not(.ingame) .g,body:not(.ingame) #tip,body:not(.ingame) #banner{display:no
 <div class="sect">Join with code</div><div class="row2"><input id="jcode" placeholder="CODE" maxlength="5" style="text-transform:uppercase"><button class="btn blue" id="mjoin">Join</button></div>
 <div class="sect">Open lobbies</div><div id="lobbylist"></div>
 </div><div><div class="sect">Leaderboard</div><table id="boardt"><thead><tr><th>#</th><th>Player</th><th>Rating</th><th>Games</th><th>Wins</th></tr></thead><tbody id="board"></tbody></table>
-<div class="dim" style="margin-top:10px"><a href="/offline">Practice offline</a> · <a href="#" id="mlogout">Log out</a></div></div></div></div></div>
+<div class="dim" style="margin-top:10px"><a href="/wiki" target="_blank">Wiki</a> · <a href="/offline">Practice offline</a> · <a href="#" id="mlogout">Log out</a></div></div></div></div></div>
 <div id="lobbyv" class="screen"><div class="box panel"><h1>Lobby <span id="lcode" class="code"></span></h1><div class="dim" id="lmode"></div>
 <div id="lplayers"></div><div id="lcount" class="count"></div>
 <label id="lranked"><input type="checkbox" id="lrankedcb"> Ranked</label>
@@ -570,18 +588,61 @@ addEventListener('keydown',e=>{
 function toggleLock(){if(canAct())net({t:'lock'})}
 
 /* tooltip */
+const RN=['','COMMON','UNCOMMON','RARE','EPIC','ULTRA'];
+let HAVE={portraits:new Set(),items:new Set()};
+try{fetch('/api/assets').then(r=>r.json()).then(a=>{HAVE.portraits=new Set(a.portraits);HAVE.items=new Set(a.items)}).catch(()=>{})}catch(e){}
+function portraitHTML(name,d){
+  const bg=RBG[d.cost].replace(/linear-gradient\(([^,]+),([^)]+)\)/,'linear-gradient($1,$2)');
+  return HAVE.portraits.has(name)?`<div class="pt" style="background:${bg}"><img src="/assets/portraits/${encodeURIComponent(name)}.png" alt=""></div>`
+    :`<div class="pt" style="background:${bg}"><canvas width="14" height="14" data-s="${name}"></canvas></div>`;
+}
+function abilityLine(d,star,ap){
+  const L=m=>[1,2,3].map(s=>`<b${s===star?' class="cur"':''}>${Math.round(d.atk*ATM[s]*m)}</b>`).join('/');
+  const apT=ap?` <span style="color:#9fe3ff">(+${Math.round(ap*100)}% ability power)</span>`:'';
+  switch(d.ab){
+    case 'bolt':return `Deal ${L(3)} damage to its target.${apT}`;
+    case 'nova':return `Deal ${L(2)} damage to all adjacent enemies${d.range>1?' around its target':''}.${apT}`;
+    case 'heal':return `Heal the weakest ally for ${[1,2,3].map(s=>`<b${s===star?' class="cur"':''}>${Math.round(d.hp*HPM[s]*.25+d.atk*ATM[s])}</b>`).join('/')} HP.${apT}`;
+    case 'buff':return `Allies within 2 tiles gain +20% attack.${apT}`;
+    case 'stun':return `Stun the target for 1.5s and deal ${L(1.5)} damage.${apT}`;
+    case 'drain':return `Deal ${L(2.2)} damage and heal for half of it.${apT}`;
+  }
+  return '';
+}
 function showTip(p){
   const t=$('#tip');if(!p){hideTip();return}
-  const isUnit=!!p.def;const d=isUnit?p.def:BYNAME[p.name];const star=p.star;
-  let hp=d.hp*HPM[star],atk=d.atk*ATM[star];
-  if(isUnit){hp=p.maxhp;atk=p.atk}
-  const ab=ABIL[d.ab];
-  t.innerHTML=`<h4>${d.name} ${'★'.repeat(star)}</h4><div class="m">${d.types.map(x=>TYPES[x].n).join(' / ')} · cost ${d.cost}</div>
-  HP ${Math.round(isUnit?p.hp:hp)}/${Math.round(hp)} · Atk ${Math.round(atk)} · Def ${Math.round(isUnit?p.df:d.def)}<br>Range ${d.range} · Mana ${d.maxMana}<br><b>${ab[0]}</b>: ${ab[1]}
-  ${!isUnit&&p.items&&p.items.length?'<br>'+p.items.map(i=>ITEMS.find(q=>q.id===i).n).join(', '):''}`;
+  const isUnit=!!p.def;const d=isUnit?p.def:BYNAME[p.name];const star=p.star||1;
+  const maxhp=isUnit?Math.round(p.maxhp):Math.round(d.hp*HPM[star]),hp=isUnit?Math.max(0,Math.round(p.hp)):maxhp;
+  const atk=Math.round(isUnit?p.atk:d.atk*ATM[star]),df=Math.round(isUnit?p.df:d.def);
+  const aspd=(isUnit?p.aspd:.8).toFixed(2),crit=Math.round((isUnit?p.crit:.05)*100),ap=Math.round((isUnit?p.ap:0)*100);
+  const mana=isUnit?Math.round(p.mana):0;
+  const its=!isUnit&&p.items&&p.items.length?`<div class="its">${p.items.map(i=>`<span title="${ITEMS.find(q=>q.id===i).d}">${ITEMS.find(q=>q.id===i).n}</span>`).join('')}</div>`:'';
+  t.className='panel';
+  t.innerHTML=`<div class="top">${portraitHTML(d.name,d)}<div class="nm"><h4>${d.name}</h4><div class="rar">${RN[d.cost]}</div><div class="stars">${'★'.repeat(star)}</div></div><div class="tps">${d.types.map(x=>tIcon(x)).join('')}</div></div>
+  <div class="bar hpb"><i style="width:${hp/maxhp*100}%"></i><b>HP: ${hp===maxhp?maxhp:hp+'/'+maxhp}</b></div>
+  <div class="bar ppb"><i style="width:${mana/d.maxMana*100}%"></i><b>PP: ${isUnit?mana+'/':''}${d.maxMana}</b></div>
+  <div class="stats"><div class="st"><em>ATK</em>${atk}</div><div class="st"><em>DEF</em>${df}</div><div class="st"><em>SPD</em>${aspd}</div>
+  <div class="st"><em>CRIT</em>${crit}%</div><div class="st"><em>AP</em>${ap}%</div><div class="st"><em>COST</em>${d.cost}</div>
+  <div class="rng">${d.range}<small>RANGE</small></div></div>
+  <div class="ab"><h5>${ABIL[d.ab][0]}</h5><p>${abilityLine(d,star,isUnit?p.ap:0)}</p></div>${its}`;
+  t.querySelectorAll('canvas[data-s]').forEach(c=>c.getContext('2d').drawImage(sprite(c.dataset.s),0,0));
   t.style.display='block';moveTip();
 }
-function moveTip(){const t=$('#tip');t.style.left=Math.min(W-260,mouse.x+16)+'px';t.style.top=Math.max(50,mouse.y-110)+'px'}
+function showItemTip(id){
+  const it=ITEMS.find(q=>q.id===id);if(!it)return;const t=$('#tip');
+  const art=HAVE.items.has(id)?`<img src="/assets/items/${id}.png" alt="">`:`<span class="glyph">${it.g}</span>`;
+  t.className='panel item';
+  t.innerHTML=`<div class="top"><div class="pt" style="background:${it.c}">${art}</div><div class="nm"><h4>${it.n}</h4><div class="rar">ITEM</div></div></div>
+  <div class="ab"><p>${it.d}.</p><p style="margin-top:5px;color:#8f98b8">Drag it onto a unit during prep (max 3 per unit).</p></div>`;
+  t.style.display='block';moveTip();
+}
+function moveTip(){
+  const t=$('#tip');const w=t.offsetWidth||330,h=t.offsetHeight||200;
+  let x=mouse.x+18,y=mouse.y-h-14;
+  if(x+w>innerWidth-8)x=mouse.x-w-18;
+  if(y<48)y=Math.min(innerHeight-h-8,mouse.y+20);
+  t.style.left=Math.max(8,x)+'px';t.style.top=Math.max(48,y)+'px';
+}
 function hideTip(){$('#tip').style.display='none';hover=null}
 
 /* ------------------------------------------------------------------ rendering: DOM */
@@ -627,8 +688,9 @@ function renderAll(){
     const th=TYPES[t].th;
     return`<div class="sy ${s.tier?'':'off'}" title="${TYPES[t].desc}">${tIcon(t)}<div class="n">${s.count}</div><div class="th">${th.map((v,i)=>i+1===s.tier?`<b>${v}</b>`:v).join(' ')}<i>${TYPES[t].n}</i></div></div>`}).join(''):'<div style="color:var(--mut);font-size:12px;text-align:center">Place units on the board</div>';
   // items
-  $('#items').innerHTML=G.items.map((id,i)=>{const it=ITEMS.find(q=>q.id===id);return`<div class="it" data-i="${i}" style="background:${it.c}" title="${it.n}: ${it.d}">${it.g}</div>`}).join('');
+  $('#items').innerHTML=G.items.map((id,i)=>{const it=ITEMS.find(q=>q.id===id);return`<div class="it" data-i="${i}" style="background:${it.c}">${HAVE.items.has(it.id)?`<img src="/assets/items/${it.id}.png" alt="">`:it.g}</div>`}).join('');
   document.querySelectorAll('.it').forEach(el=>{
+    el.onmouseenter=ev=>{mouse.x=ev.clientX;mouse.y=ev.clientY;if(!drag)showItemTip(G.items[+el.dataset.i])};el.onmousemove=ev=>{mouse.x=ev.clientX;mouse.y=ev.clientY;moveTip()};el.onmouseleave=hideTip;
     el.onpointerdown=e=>{if(!canAct()){msg('Items can only be equipped during prep');return}mouse.x=e.clientX;mouse.y=e.clientY;drag={item:G.items[+el.dataset.i]};e.preventDefault()};
   });
   // players
@@ -660,7 +722,7 @@ function frame(now){
 
 /* buttons */
 $('#reroll').onclick=reroll;$('#buyxp').onclick=buyXp;$('#lock').onclick=toggleLock;$('#ready').onclick=toggleReady;
-$('#bHelp').onclick=()=>$('#help').style.display='flex';$('#helpOk').onclick=()=>$('#help').style.display='none';
+$('#bWiki').onclick=()=>window.open('/wiki','_blank');$('#bHelp').onclick=()=>$('#help').style.display='flex';$('#helpOk').onclick=()=>$('#help').style.display='none';
 $('#bFs').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
 $('#bSpeed').onclick=()=>{speed=speed===1?2:speed===2?4:1;$('#bSpeed').textContent=speed+'x'};
 $('#bNew').onclick=()=>{if(confirm('Leave the match? You will be eliminated.')){net({t:'leave'});G=null;B=null;$('#over').style.display='none'}};
